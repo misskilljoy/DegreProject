@@ -1,0 +1,48 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:project13529617.tilda.ws)",
+      "Bash(start \"c:\\\\Users\\\\erzhe\\\\Desktop\\\\DegreProject\\\\preview\\\\new-site.html\")",
+      "mcp__playwright__browser_take_screenshot",
+      "Bash(npm --version)",
+      "Bash(npm create *)",
+      "Bash(node -e ' *)",
+      "PowerShell($size = \\(Get-ChildItem -Path \"c:\\\\Users\\\\erzhe\\\\Desktop\\\\DegreProject\\\\node_modules\" -Recurse -File | Measure-Object -Property Length -Sum\\).Sum; [math]::Round\\($size / 1MB, 1\\))",
+      "PowerShell(Get-ChildItem -Path \"c:\\\\Users\\\\erzhe\\\\Desktop\\\\DegreProject\" -Recurse -File | ForEach-Object { $_.FullName.Replace\\(\"c:\\\\Users\\\\erzhe\\\\Desktop\\\\DegreProject\\\\\", \"\"\\) })",
+      "PowerShell(Remove-Item -Path \"c:\\\\Users\\\\erzhe\\\\Desktop\\\\DegreProject\\\\src\" -Recurse -Force -Confirm:$false)",
+      "PowerShell(Remove-Item -Path \"c:\\\\Users\\\\erzhe\\\\Desktop\\\\DegreProject\\\\site\" -Recurse -Force -Confirm:$false)",
+      "PowerShell(Remove-Item -Path \"c:\\\\Users\\\\erzhe\\\\Desktop\\\\DegreProject\\\\references\" -Recurse -Force -Confirm:$false)",
+      "WebSearch",
+      "WebFetch(domain:help.figma.com)",
+      "mcp__figma__add_figma_file",
+      "PowerShell(Start-Process \"c:\\\\Users\\\\erzhe\\\\Desktop\\\\DegreProject\\\\index.html\")",
+      "mcp__figma__view_node",
+      "PowerShell(cd \"c:\\\\Users\\\\erzhe\\\\Desktop\\\\DegreProject\"; Start-Process powershell -ArgumentList \"-NoExit\", \"-Command\", \"npx serve . -p 3000\" -WindowStyle Normal; Start-Sleep -Seconds 3; Write-Host \"Server started\")",
+      "PowerShell(try { $r = Invoke-WebRequest -Uri \"http://localhost:3000\" -TimeoutSec 3 -UseBasicParsing; Write-Host \"Status: $\\($r.StatusCode\\)\" } catch { Write-Host \"Error: $_\" })",
+      "PowerShell(cd \"c:\\\\Users\\\\erzhe\\\\Desktop\\\\DegreProject\"; $env:Path = [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"User\"\\); Start-Process -FilePath \"cmd.exe\" -ArgumentList \"/c npx serve . -p 3000\" -WindowStyle Normal; Start-Sleep -Seconds 4; try { $r = Invoke-WebRequest -Uri \"http://localhost:3000\" -TimeoutSec 5 -UseBasicParsing; Write-Host \"Server OK: $\\($r.StatusCode\\)\" } catch { Write-Host \"Server not responding: $_\" })",
+      "mcp__playwright__browser_resize",
+      "mcp__playwright__browser_console_messages",
+      "mcp__playwright__browser_evaluate",
+      "PowerShell($token = \"figd_hI-ctKcvRnbviWSeARSolY_EWBgl9m0Cf4lEU4AO\"; $headers = @{\"X-FIGMA-TOKEN\" = $token}; $r = Invoke-WebRequest -Uri \"https://api.figma.com/v1/files/v6pdbt40XZSgIghVBXtTMn/nodes?ids=1:3\" -Headers $headers -UseBasicParsing; $r.Content | Out-File \"c:\\\\Users\\\\erzhe\\\\Desktop\\\\DegreProject\\\\figma_hero.json\" -Encoding utf8; Write-Host \"Done, size: $\\($r.Content.Length\\)\")",
+      "PowerShell($token = \"figd_hI-ctKcvRnbviWSeARSolY_EWBgl9m0Cf4lEU4AO\"; $headers = @{\"X-FIGMA-TOKEN\" = $token}; $r = Invoke-WebRequest -Uri \"https://api.figma.com/v1/files/v6pdbt40XZSgIghVBXtTMn/nodes?ids=6:74,7:104,10:27,10:44,10:61\" -Headers $headers -UseBasicParsing; $r.Content | Out-File \"c:\\\\Users\\\\erzhe\\\\Desktop\\\\DegreProject\\\\figma_rest.json\" -Encoding utf8; Write-Host \"Done, size: $\\($r.Content.Length\\)\")",
+      "PowerShell(npm install -g task-master-ai 2>&1)",
+      "Bash(curl -s -H \"X-Figma-Token: figd_hI-ctKcvRnbviWSeARSolY_EWBgl9m0Cf4lEU4AO\" \"https://api.figma.com/v1/files/v6pdbt40XZSgIghVBXtTMn?depth=2\")",
+      "Bash(python3 -c ' *)",
+      "Bash(curl -s -H \"X-Figma-Token: figd_hI-ctKcvRnbviWSeARSolY_EWBgl9m0Cf4lEU4AO\" \"https://api.figma.com/v1/files/v6pdbt40XZSgIghVBXtTMn?depth=2\" -o /tmp/figma.json)",
+      "Bash(curl -s -H \"X-Figma-Token: figd_hI-ctKcvRnbviWSeARSolY_EWBgl9m0Cf4lEU4AO\" \"https://api.figma.com/v1/files/v6pdbt40XZSgIghVBXtTMn?depth=2\" -o \"C:/Users/erzhe/Desktop/DegreProject/figma_audit.json\")",
+      "Bash(curl -s -H 'X-Figma-Token: figd_hI-ctKcvRnbviWSeARSolY_EWBgl9m0Cf4lEU4AO' 'https://api.figma.com/v1/files/v6pdbt40XZSgIghVBXtTMn/nodes?ids=1%3A3%2C6%3A74%2C7%3A104%2C10%3A27%2C10%3A44%2C10%3A61&depth=4' -o C:/Users/erzhe/Desktop/DegreProject/figma_all_frames.json)",
+      "PowerShell(if \\(Test-Path \"$env:APPDATA\\\\Claude\"\\) { Get-ChildItem \"$env:APPDATA\\\\Claude\" } else { \"DIR_NOT_FOUND\" })",
+      "PowerShell(Get-ChildItem \"$env:LOCALAPPDATA\\\\Claude-3p\" | Select-Object Name)",
+      "PowerShell(Get-ChildItem \"$env:LOCALAPPDATA\\\\Claude-3p\" -Force | Select-Object Name, Mode)",
+      "PowerShell(Get-ChildItem \"$env:USERPROFILE\\\\.claude\" -Force | Select-Object Name, Mode)",
+      "PowerShell(Get-ChildItem \"$env:USERPROFILE\\\\.claude\" -Force -Recurse | Select-Object FullName | Select-Object -First 20)",
+      "PowerShell(Test-Path \"$env:USERPROFILE\\\\.claude\"; Get-Item \"$env:USERPROFILE\\\\.claude\" -ErrorAction SilentlyContinue | Select-Object FullName)",
+      "Read(//c/Users/erzhe/.claude/**)",
+      "PowerShell(Start-Process powershell -ArgumentList \"-NoExit\", \"-Command\", \"cd 'c:\\\\Users\\\\erzhe\\\\Desktop\\\\DegreProject'; npx serve . -p 3000 --no-clipboard\" -WindowStyle Normal)"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\erzhe\\Desktop\\DegreProject\\node_modules",
+      "c:\\Users\\erzhe\\Desktop\\DegreProject"
+    ]
+  }
+}

@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Degre Design — ЖК City Park</title>
+  <meta name="description" content="Страница проекта Degre Design с параметрами, планировкой и галереей интерьера.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/main.css?v=20260602-structure">
+</head>
+<body class="project-page">
+  <nav class="nav project-nav">
+    <a href="index.html#hero" class="nav__logo">DEGRE DESIGN</a>
+    <button class="nav__toggle" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="primary-menu">
+      <span class="nav__toggle-line"></span>
+      <span class="nav__toggle-line"></span>
+    </button>
+    <ul class="nav__links" id="primary-menu">
+      <li><a href="index.html#about">О студии</a></li>
+      <li><a href="index.html#portfolio">Портфолио</a></li>
+      <li><a href="index.html#services">Услуги</a></li>
+      <li><a href="index.html#contacts">Контакты</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section class="project-hero">
+      <a class="project-hero__back" href="index.html#portfolio">Назад к портфолио</a>
+      <div class="project-hero__media">
+        <img src="assets/images/projects/city-park/cover.png" alt="ЖК City Park — обложка проекта" width="960" height="1280">
+      </div>
+      <div class="project-hero__content">
+        <p class="project-hero__eyebrow">Apartment interiors</p>
+        <h1 class="project-hero__title">ЖК City Park</h1>
+      </div>
+    </section>
+
+    <section class="project-info" aria-label="Параметры проекта">
+      <p class="project-info__lead">
+        Интерьер квартиры в классической спокойной палитре: спальня с мягкой текстильной зоной,
+        компактная кухня, приватный санузел и гостиная с зелёным диваном как главным акцентом.
+      </p>
+      <dl class="project-info__list">
+        <div class="project-info__item">
+          <dt>Дата</dt>
+          <dd>09.2023</dd>
+        </div>
+        <div class="project-info__item">
+          <dt>Категория</dt>
+          <dd>Apartment</dd>
+        </div>
+        <div class="project-info__item">
+          <dt>Площадь</dt>
+          <dd>85 м²</dd>
+        </div>
+        <div class="project-info__item">
+          <dt>Комнат</dt>
+          <dd>3</dd>
+        </div>
+        <div class="project-info__item">
+          <dt>Команда</dt>
+          <dd>Евгения Лудупова</dd>
+        </div>
+        <div class="project-info__item">
+          <dt>Документация</dt>
+          <dd>Планировочное решение, рабочие чертежи, спецификации</dd>
+        </div>
+        <div class="project-info__item">
+          <dt>Визуализация</dt>
+          <dd>3D renders</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="project-plan" id="plans">
+      <div class="project-plan__header">
+        <p class="project-plan__eyebrow">Plans</p>
+        <h2 class="project-plan__title">Планировка</h2>
+      </div>
+      <div class="project-plan__body">
+        <div class="project-plan__drawing" aria-label="Схематичная планировка квартиры">
+          <svg viewBox="0 0 900 620" role="img" aria-labelledby="plan-title">
+            <title id="plan-title">Планировка квартиры ЖК City Park</title>
+            <rect x="70" y="70" width="760" height="480" fill="none" stroke="currentColor" stroke-width="10"/>
+            <path d="M70 240h260V70M330 240v310M330 350h260M590 70v480M590 230h240" fill="none" stroke="currentColor" stroke-width="7"/>
+            <path d="M330 485h95M590 430h88M185 240h82M590 165h86" fill="none" stroke="currentColor" stroke-width="14" stroke-linecap="round"/>
+            <rect x="105" y="100" width="185" height="100" fill="none" stroke="currentColor" stroke-width="3"/>
+            <rect x="375" y="95" width="170" height="110" fill="none" stroke="currentColor" stroke-width="3"/>
+            <rect x="625" y="95" width="185" height="95" fill="none" stroke="currentColor" stroke-width="3"/>
+            <rect x="625" y="275" width="170" height="165" fill="none" stroke="currentColor" stroke-width="3"/>
+            <rect x="380" y="385" width="165" height="105" fill="none" stroke="currentColor" stroke-width="3"/>
+            <text x="145" y="160">Кухня</text>
+            <text x="410" y="160">Гостиная</text>
+            <text x="655" y="150">Спальня</text>
+            <text x="655" y="360">Детская</text>
+            <text x="405" y="445">Санузел</text>
+            <text x="115" y="425">Холл</text>
+          </svg>
+        </div>
+        <div class="project-plan__notes">
+          <span class="project-plan__number">01</span>
+          <p>
+            Центральная зона объединяет кухню-гостиную и хранение у входа. Приватные комнаты
+            отделены от общественной части, чтобы сохранить тишину и понятную логику движения.
+          </p>
+          <a href="index.html#contacts" class="project-plan__link">Запросить похожий проект</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="project-gallery" aria-label="Рендеры проекта"></section>
+
+    <section class="project-related" aria-label="Посмотреть другие проекты">
+      <h2 class="project-related__title">Посмотреть другие проекты</h2>
+      <div class="project-related__grid"></div>
+    </section>
+
+    <section class="project-cta" aria-label="Связаться с нами">
+      <h2 class="project-cta__title">Есть проект? Давайте обсудим пространство, которое хочется создать.</h2>
+      <div class="project-cta__side">
+        <p class="project-cta__text">
+          Расскажите о квартире, доме или коммерческом пространстве. Я отвечу в течение суток
+          и предложу следующий шаг по проекту.
+        </p>
+        <a href="index.html#contacts" class="project-cta__link">Связаться с нами</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="scripts/project-data.js?v=20260602-structure"></script>
+  <script src="scripts/main.js?v=20260602-structure"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "defaultMode": "bypassPermissions",
+    "allow": [
+      "Bash(npm init *)",
+      "WebFetch(domain:degredesign.ru)",
+      "Skill(update-config)",
+      "Skill(update-config:*)",
+      "PowerShell(winget install OpenJS.NodeJS.LTS --accept-source-agreements --accept-package-agreements)",
+      "PowerShell($env:Path = [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"User\"\\); node --version; npm --version; npx --version)",
+      "PowerShell(Get-ChildItem \"c:\\\\Users\\\\erzhe\\\\Desktop\\\\DegreProject\\\\\" | ForEach-Object { $_.FullName })",
+      "PowerShell($env:Path = [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"User\"\\); npx -y @modelcontextprotocol/server-puppeteer --version 2>&1 | Select-Object -First 5)",
+      "PowerShell($env:Path = [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"User\"\\); npx -y @playwright/mcp@latest --version 2>&1)",
+      "WebFetch(domain:kirpichagency.com)",
+      "PowerShell(Start-Process \"c:\\\\Users\\\\erzhe\\\\Desktop\\\\DegreProject\\\\preview\\\\hero-preview.html\")",
+      "PowerShell(Copy-Item \"c:\\\\Users\\\\erzhe\\\\Desktop\\\\DegreProject\\\\node_modules\\\\gsap\\\\dist\\\\gsap.min.js\" \"c:\\\\Users\\\\erzhe\\\\Desktop\\\\DegreProject\\\\preview\\\\gsap.min.js\")",
+      "PowerShell(Copy-Item \"c:\\\\Users\\\\erzhe\\\\Desktop\\\\DegreProject\\\\node_modules\\\\gsap\\\\dist\\\\ScrollTrigger.min.js\" \"c:\\\\Users\\\\erzhe\\\\Desktop\\\\DegreProject\\\\preview\\\\ScrollTrigger.min.js\")",
+      "Bash(node -e ' *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/)",
+      "PowerShell(Start-Process \"http://localhost:3000\")",
+      "Bash(python3 -)",
+      "Bash(node preview/gen.js)",
+      "WebFetch(domain:artalekseev.com)",
+      "Bash(Start-Process \"c:\\\\Users\\\\erzhe\\\\Desktop\\\\DegreProject\\\\preview\\\\hero-preview.html\")",
+      "WebFetch(domain:fulcrumdesignstudio.art)",
+      "WebFetch(domain:www.racastudio.pl)",
+      "mcp__playwright__browser_navigate",
+      "Bash(npx playwright *)"
+    ]
+  }
+}

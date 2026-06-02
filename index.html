@@ -1,0 +1,256 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Degre Design — Студия дизайна интерьера</title>
+  <meta name="description" content="Degre Design — студия дизайна интерьера Евгении Лудуповой. Дизайн-проекты квартир, домов и коммерческих пространств.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/main.css?v=20260602-structure">
+</head>
+<body>
+  <div class="page-loader" aria-hidden="true">
+    <div class="page-loader__word">
+      <span class="page-loader__char">D</span>
+      <span class="page-loader__char">E</span>
+      <span class="page-loader__char">G</span>
+      <span class="page-loader__char">R</span>
+      <span class="page-loader__char">E</span>
+      <span class="page-loader__degree"></span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       HERO — Desktop-1
+  ══════════════════════════════════════ -->
+  <section class="hero" id="hero">
+    <nav class="nav">
+      <a href="#hero" class="nav__logo">DEGRE DESIGN</a>
+      <button class="nav__toggle" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="primary-menu">
+        <span class="nav__toggle-line"></span>
+        <span class="nav__toggle-line"></span>
+      </button>
+      <ul class="nav__links" id="primary-menu">
+        <li><a href="#about">Обо мне</a></li>
+        <li><a href="#portfolio">Портфолио</a></li>
+        <li><a href="#services">Услуги</a></li>
+        <li><a href="#contacts">Контакты</a></li>
+      </ul>
+    </nav>
+
+    <div class="hero__body">
+      <div class="hero__content">
+        <p class="hero__label">Студия дизайна интерьера · Russia & Europe</p>
+        <h1 class="hero__title">
+          <span class="hero__degre">
+            <span class="hero__letter">D</span><span class="hero__letter">E</span><span class="hero__letter">G</span><span class="hero__letter">R</span><span class="hero__letter">E</span><span class="hero__circle"></span>
+          </span>
+          <em class="hero__design">
+            <span class="hero__letter">D</span><span class="hero__letter">E</span><span class="hero__letter">S</span><span class="hero__letter">I</span><span class="hero__letter">G</span><span class="hero__letter">N</span>
+          </em>
+        </h1>
+      </div>
+      <div class="hero__img-wrap">
+        <img src="assets/images/site/hero-interior.png" alt="Светлый интерьер с обеденной зоной" class="hero__img" width="710" height="922" fetchpriority="high">
+      </div>
+      <!-- Субтитр вне колонки — позиционируется абсолютно как в Figma (x:196 y:616) -->
+      <p class="hero__sub">
+        <span class="hero__sub-line1">Пространство — как высказывание.</span>
+        <span class="hero__sub-line2">Архитектура — как язык.</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       ABOUT — Desktop-2
+  ══════════════════════════════════════ -->
+  <section class="about" id="about">
+    <div class="about__text">
+      <div class="about__label-row">
+        <span class="about__line"></span>
+        <span class="about__label">О СТУДИИ</span>
+      </div>
+      <h2 class="about__title">
+        <span class="about__upper">Создаю пространства,</span><br>
+        <em class="about__italic">которые остаются</em><br>
+        <span class="about__upper">С ВАМИ НАВСЕГДА</span>
+      </h2>
+      <div class="about__bio">
+        <p>Я Евгения Лудупова — архитектор и дизайнер интерьера. Работаю в Москве с 2019 года. Проектирую квартиры, дома и коммерческие пространства — от концепции до авторского надзора.</p>
+        <p>Мой подход: интерьер — это не просто красивые картинки. Это выверенная функция, материалы которые хочется трогать, и ощущение, что пространство создано именно для тебя.</p>
+      </div>
+    </div>
+
+    <div class="about__photo-col">
+      <img src="assets/images/site/paper.png" alt="" class="about__paper" aria-hidden="true" width="732" height="983" loading="lazy">
+      <img src="assets/images/site/portrait.png" alt="Евгения Лудупова" class="about__portrait" width="439" height="616" loading="lazy">
+      <span class="about__pin" aria-hidden="true">
+        <img src="assets/images/site/clip.png" alt="" class="about__pin-side" width="504" height="479" loading="lazy">
+      </span>
+      <div class="about__name">
+        <span class="about__name-main">Евгения Лудупова</span>
+        <span class="about__name-sub">Архитектор · Дизайнер интерьера</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SERVICES — Desktop-3
+  ══════════════════════════════════════ -->
+  <section class="services" id="services">
+    <div class="services__top">
+      <div class="services__top-left">
+        <p class="services__eyebrow">Чем занимаюсь</p>
+        <h2 class="services__title">Услуги</h2>
+      </div>
+      <p class="services__subtitle">Каждый проект — это индивидуальный подход и честный диалог с клиентом</p>
+    </div>
+
+    <div class="services__list">
+      <div class="services__item">
+        <button class="services__row" type="button" aria-expanded="false" aria-controls="service-desc-1">
+          <span class="services__num">01</span>
+          <span class="services__name">Дизайн-проект</span>
+          <span class="services__price">от 5000 ₽ / м²</span>
+        </button>
+        <p class="services__desc" id="service-desc-1">Полный дизайн-проект включает концепцию, планировочное решение, рабочие чертежи, спецификации и 3D-визуализацию.</p>
+      </div>
+      <div class="services__item">
+        <button class="services__row" type="button" aria-expanded="false" aria-controls="service-desc-2">
+          <span class="services__num">02</span>
+          <span class="services__name">Технический проект</span>
+          <span class="services__price">от 3000 ₽ / м²</span>
+        </button>
+        <p class="services__desc" id="service-desc-2">Строительные чертежи и документация без концепции и визуализации. Для тех, кому нужен только проект под ремонт.</p>
+      </div>
+      <div class="services__item">
+        <button class="services__row" type="button" aria-expanded="false" aria-controls="service-desc-3">
+          <span class="services__num">03</span>
+          <span class="services__name">Авторский надзор</span>
+          <span class="services__price">от 40 000 ₽ / месяц</span>
+        </button>
+        <p class="services__desc" id="service-desc-3">Контроль за реализацией проекта на строительной площадке. Слежу за соответствием ремонта проекту, решаю нестандартные ситуации на месте.</p>
+      </div>
+      <div class="services__item">
+        <button class="services__row" type="button" aria-expanded="false" aria-controls="service-desc-4">
+          <span class="services__num">04</span>
+          <span class="services__name">Комплектация</span>
+          <span class="services__price">% от бюджета</span>
+        </button>
+        <p class="services__desc" id="service-desc-4">Подбор и закупка мебели, материалов и декора. Работаю с проверенными поставщиками и помогаю сэкономить на закупках без потери качества.</p>
+      </div>
+      <div class="services__item">
+        <button class="services__row" type="button" aria-expanded="false" aria-controls="service-desc-5">
+          <span class="services__num">05</span>
+          <span class="services__name">Онлайн-консультация</span>
+          <span class="services__price">15 000 ₽ / в час</span>
+        </button>
+        <p class="services__desc" id="service-desc-5">Разовая консультация по вашему проекту: планировка, материалы, стиль. Отвечу на вопросы и дам конкретные рекомендации с примерами.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       PORTFOLIO — Desktop-4
+  ══════════════════════════════════════ -->
+  <section class="portfolio" id="portfolio">
+    <div class="portfolio__header">
+      <p class="portfolio__eyebrow">Избранные проекты</p>
+      <h2 class="portfolio__title">Портфолио</h2>
+    </div>
+
+    <div class="portfolio__grid">
+      <div class="portfolio__item" data-project="city-park">
+        <img src="assets/images/projects/city-park/cover.png" alt="ЖК City Park" width="474" height="665" loading="lazy">
+        <div class="portfolio__caption">
+          <span class="portfolio__date">09 / 2023</span>
+          <span class="portfolio__project">ЖК «City Park»</span>
+          <span class="portfolio__city">Москва · 85 м²</span>
+        </div>
+      </div>
+      <div class="portfolio__item" data-project="vesna">
+        <img src="assets/images/projects/vesna/cover.png" alt="ЖК Весна" width="475" height="665" loading="lazy">
+        <div class="portfolio__caption">
+          <span class="portfolio__date">11 / 2025</span>
+          <span class="portfolio__project">ЖК «Весна»</span>
+          <span class="portfolio__city">Улан-Удэ · 82 м²</span>
+        </div>
+      </div>
+      <div class="portfolio__item" data-project="mushu">
+        <img src="assets/images/projects/mushu/cover.png" alt="Кафе Мушу" width="475" height="665" loading="lazy">
+        <div class="portfolio__caption">
+          <span class="portfolio__date">02 / 2024</span>
+          <span class="portfolio__project">Кафе «Мушу»</span>
+          <span class="portfolio__city">Улан-Удэ · 120 м²</span>
+        </div>
+      </div>
+      <div class="portfolio__item portfolio__item--wide" data-project="degre-apartment">
+        <img src="assets/images/projects/degre-apartment/cover.png" alt="Интерьер проекта Degre Design" width="957" height="558" loading="lazy">
+      </div>
+      <div class="portfolio__item" data-project="degre-detail">
+        <img src="assets/images/projects/detail/cover.png" alt="Деталь интерьера проекта Degre Design" width="475" height="558" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       REVIEWS — Desktop-5
+  ══════════════════════════════════════ -->
+  <section class="reviews" id="reviews">
+    <div class="reviews__header">
+      <p class="reviews__eyebrow">Что говорят клиенты</p>
+      <h2 class="reviews__title">Отзывы</h2>
+    </div>
+    <div class="reviews__grid">
+      <div class="reviews__item">
+        <span class="reviews__quote">"</span>
+        <p class="reviews__text">Евгения создала именно то пространство, о котором я мечтала. Не просто красиво, а по-настоящему моё. Каждая деталь продумана до конца.</p>
+      </div>
+      <div class="reviews__item">
+        <span class="reviews__quote">"</span>
+        <p class="reviews__text">Работать с Евгенией одно удовольствие. Она слышит тебя с первой встречи и переводит пожелания в реальный проект. Результат превзошёл ожидания.</p>
+      </div>
+      <div class="reviews__item">
+        <span class="reviews__quote">"</span>
+        <p class="reviews__text">Наше кафе стало узнаваемым, гости специально приходят за атмосферой. Евгения поняла концепцию сразу и воплотила её лучше, чем мы представляли.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       CONTACTS / FOOTER — Desktop-6
+  ══════════════════════════════════════ -->
+  <footer class="contacts" id="contacts">
+    <div class="contacts__left">
+      <p class="contacts__eyebrow">Давайте познакомимся</p>
+      <h2 class="contacts__title">Начнём <em>проект?</em></h2>
+      <p class="contacts__desc">Напишите мне — расскажите о своём пространстве и о том, каким вы хотите его видеть. Я отвечаю в течение суток.</p>
+      <div class="contacts__logo">
+        <span class="contacts__logo-name">DEGRE<span class="contacts__logo-circle"></span></span>
+        <span class="contacts__logo-tag">design</span>
+      </div>
+    </div>
+
+    <div class="contacts__right">
+      <div class="contacts__block">
+        <span class="contacts__label">E-mail</span>
+        <a href="mailto:Degre.design@yahoo.com" class="contacts__value">Degre.design@yahoo.com</a>
+      </div>
+      <div class="contacts__block">
+        <span class="contacts__label">Телефон</span>
+        <a href="tel:+79817362375" class="contacts__value">+7 981 736 23 75</a>
+      </div>
+      <div class="contacts__socials">
+        <span class="contacts__social contacts__social--disabled">Instagram</span>
+        <span class="contacts__social contacts__social--disabled">Telegram</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="scripts/project-data.js?v=20260602-structure"></script>
+  <script src="scripts/main.js?v=20260602-structure"></script>
+</body>
+</html>
