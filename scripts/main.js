@@ -101,6 +101,8 @@ const renderProjectPage = () => {
   if (heroImg) {
     heroImg.src = project.cover;
     heroImg.alt = `${project.title} — обложка проекта`;
+    heroImg.decoding = 'async';
+    heroImg.fetchPriority = 'high';
     heroImg.onerror = () => {
       if (project.fallback && heroImg.src.indexOf(project.fallback) === -1) {
         heroImg.src = project.fallback;
@@ -121,6 +123,8 @@ const renderProjectPage = () => {
       img.src = src;
       img.alt = `${project.title} — рендер ${index + 1}`;
       img.loading = 'lazy';
+      img.decoding = 'async';
+      img.sizes = '(max-width: 900px) 100vw, 50vw';
       img.onerror = () => {
         if (project.fallback && img.src.indexOf(project.fallback) === -1) {
           img.src = project.fallback;
@@ -146,6 +150,8 @@ const renderProjectPage = () => {
         image.src = related.fallback || related.cover;
         image.alt = related.title;
         image.loading = 'lazy';
+        image.decoding = 'async';
+        image.sizes = '(max-width: 900px) 100vw, 50vw';
 
         const name = document.createElement('span');
         name.className = 'project-related__name';
@@ -206,71 +212,3 @@ serviceItems.forEach(item => {
     }
   });
 });
-
-/* Скрепка садится на угол фото при скролле */
-const aboutSection = document.querySelector('.about');
-const aboutPin = document.querySelector('.about__pin');
-const aboutPinSide = document.querySelector('.about__pin-side');
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-let clipTicking = false;
-
-const updateClipPin = () => {
-  if (!aboutSection || !aboutPin || window.matchMedia('(max-width: 768px)').matches) return;
-
-  if (reduceMotion.matches) {
-    aboutPin.style.opacity = '1';
-    aboutPin.style.transform = 'none';
-    if (aboutPinSide) aboutPinSide.style.opacity = '0';
-    aboutPin.classList.add('is-pinned');
-    return;
-  }
-
-  const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-  const sectionTop = aboutSection.offsetTop;
-  const start = sectionTop - viewportHeight * 0.85;
-  const end = sectionTop - viewportHeight * 0.18;
-  const progress = clamp((window.scrollY - start) / (end - start), 0, 1);
-  const eased = 1 - Math.pow(1 - progress, 3);
-  const x = 180 * (1 - eased);
-  const press = progress > 0.82 ? Math.sin((progress - 0.82) / 0.18 * Math.PI) * 0.08 : 0;
-  const scale = 1 + 0.18 * (1 - eased) - press;
-  const opacity = clamp((progress - 0.08) / 0.35, 0, 1);
-  const headProgress = clamp((progress - 0.58) / 0.34, 0, 1);
-  const sideOpacity = 1 - headProgress;
-  const headOpacity = opacity * headProgress;
-
-  aboutPin.style.opacity = String(opacity);
-  aboutPin.style.transform = `translateX(${x}px) scale(${scale})`;
-  aboutPin.style.background = `radial-gradient(circle at 35% 30%,
-    rgba(255,255,255,${0.95 * headProgress}) 0 8%,
-    rgba(210,209,202,${0.9 * headProgress}) 9% 28%,
-    rgba(122,119,111,${0.95 * headProgress}) 60%,
-    rgba(70,69,65,${0.95 * headProgress}) 100%)`;
-  aboutPin.style.boxShadow = `
-    0 ${8 - 5 * eased}px ${14 - 7 * eased}px rgba(28, 26, 23, ${(0.24 - 0.08 * eased) * headProgress}),
-    inset -5px -5px 8px rgba(28, 26, 23, ${0.28 * headProgress}),
-    inset 4px 4px 7px rgba(255, 255, 255, ${0.72 * headProgress})
-  `;
-  if (aboutPinSide) {
-    const sideRotate = -34 + 34 * headProgress;
-    const sideScale = 1.1 - 0.32 * headProgress;
-    aboutPinSide.style.opacity = String(sideOpacity);
-    aboutPinSide.style.transform = `rotate(${sideRotate}deg) scale(${sideScale})`;
-  }
-  aboutPin.classList.toggle('is-pinned', progress > 0.96);
-};
-
-const requestClipPinUpdate = () => {
-  if (clipTicking) return;
-
-  clipTicking = true;
-  window.requestAnimationFrame(() => {
-    updateClipPin();
-    clipTicking = false;
-  });
-};
-
-updateClipPin();
-window.addEventListener('scroll', requestClipPinUpdate, { passive: true });
-window.addEventListener('resize', updateClipPin);
-window.addEventListener('load', updateClipPin);

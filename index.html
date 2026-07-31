@@ -2,14 +2,12 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#F2EDE6">
   <title>Degre Design — Студия дизайна интерьера</title>
   <meta name="description" content="Degre Design — студия дизайна интерьера Евгении Лудуповой. Дизайн-проекты квартир, домов и коммерческих пространств.">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles/main.css?v=20260602-structure">
+  <link rel="stylesheet" href="styles/main.css?v=20260731-loader-degree-final">
 </head>
 <body>
   <div class="page-loader" aria-hidden="true">
@@ -18,8 +16,7 @@
       <span class="page-loader__char">E</span>
       <span class="page-loader__char">G</span>
       <span class="page-loader__char">R</span>
-      <span class="page-loader__char">E</span>
-      <span class="page-loader__degree"></span>
+      <span class="page-loader__char page-loader__char--last">E<span class="page-loader__degree"></span></span>
     </div>
   </div>
 
@@ -54,7 +51,7 @@
         </h1>
       </div>
       <div class="hero__img-wrap">
-        <img src="assets/images/site/hero-interior.png" alt="Светлый интерьер с обеденной зоной" class="hero__img" width="710" height="922" fetchpriority="high">
+        <img src="assets/images/site/hero-interior.jpg" alt="Светлый интерьер с обеденной зоной" class="hero__img" width="710" height="922" fetchpriority="high" loading="eager" decoding="async" sizes="(max-width: 1024px) 100vw, 49.3vw">
       </div>
       <!-- Субтитр вне колонки — позиционируется абсолютно как в Figma (x:196 y:616) -->
       <p class="hero__sub">
@@ -85,11 +82,8 @@
     </div>
 
     <div class="about__photo-col">
-      <img src="assets/images/site/paper.png" alt="" class="about__paper" aria-hidden="true" width="732" height="983" loading="lazy">
-      <img src="assets/images/site/portrait.png" alt="Евгения Лудупова" class="about__portrait" width="439" height="616" loading="lazy">
-      <span class="about__pin" aria-hidden="true">
-        <img src="assets/images/site/clip.png" alt="" class="about__pin-side" width="504" height="479" loading="lazy">
-      </span>
+      <img src="assets/images/site/paper.png" alt="" class="about__paper" aria-hidden="true" width="732" height="983" loading="lazy" decoding="async">
+      <img src="assets/images/site/portrait.jpg" alt="Евгения Лудупова" class="about__portrait" width="439" height="616" loading="lazy" decoding="async" sizes="(max-width: 900px) 100vw, 439px">
       <div class="about__name">
         <span class="about__name-main">Евгения Лудупова</span>
         <span class="about__name-sub">Архитектор · Дизайнер интерьера</span>
@@ -114,7 +108,7 @@
         <button class="services__row" type="button" aria-expanded="false" aria-controls="service-desc-1">
           <span class="services__num">01</span>
           <span class="services__name">Дизайн-проект</span>
-          <span class="services__price">от 5000 ₽ / м²</span>
+          <span class="services__price">от 5000 ₽ / м2</span>
         </button>
         <p class="services__desc" id="service-desc-1">Полный дизайн-проект включает концепцию, планировочное решение, рабочие чертежи, спецификации и 3D-визуализацию.</p>
       </div>
@@ -122,7 +116,7 @@
         <button class="services__row" type="button" aria-expanded="false" aria-controls="service-desc-2">
           <span class="services__num">02</span>
           <span class="services__name">Технический проект</span>
-          <span class="services__price">от 3000 ₽ / м²</span>
+          <span class="services__price">от 3000 ₽ / м2</span>
         </button>
         <p class="services__desc" id="service-desc-2">Строительные чертежи и документация без концепции и визуализации. Для тех, кому нужен только проект под ремонт.</p>
       </div>
@@ -130,7 +124,7 @@
         <button class="services__row" type="button" aria-expanded="false" aria-controls="service-desc-3">
           <span class="services__num">03</span>
           <span class="services__name">Авторский надзор</span>
-          <span class="services__price">от 40 000 ₽ / месяц</span>
+          <span class="services__price">от 40000 ₽ / месяц</span>
         </button>
         <p class="services__desc" id="service-desc-3">Контроль за реализацией проекта на строительной площадке. Слежу за соответствием ремонта проекту, решаю нестандартные ситуации на месте.</p>
       </div>
@@ -146,7 +140,7 @@
         <button class="services__row" type="button" aria-expanded="false" aria-controls="service-desc-5">
           <span class="services__num">05</span>
           <span class="services__name">Онлайн-консультация</span>
-          <span class="services__price">15 000 ₽ / в час</span>
+          <span class="services__price">15000 ₽ / в час</span>
         </button>
         <p class="services__desc" id="service-desc-5">Разовая консультация по вашему проекту: планировка, материалы, стиль. Отвечу на вопросы и дам конкретные рекомендации с примерами.</p>
       </div>
@@ -164,7 +158,7 @@
 
     <div class="portfolio__grid">
       <div class="portfolio__item" data-project="city-park">
-        <img src="assets/images/projects/city-park/cover.png" alt="ЖК City Park" width="474" height="665" loading="lazy">
+        <img src="assets/images/projects/city-park/web/08.jpg" alt="ЖК City Park" width="474" height="665" loading="lazy" decoding="async" sizes="(max-width: 900px) 100vw, 33vw">
         <div class="portfolio__caption">
           <span class="portfolio__date">09 / 2023</span>
           <span class="portfolio__project">ЖК «City Park»</span>
@@ -172,7 +166,7 @@
         </div>
       </div>
       <div class="portfolio__item" data-project="vesna">
-        <img src="assets/images/projects/vesna/cover.png" alt="ЖК Весна" width="475" height="665" loading="lazy">
+        <img src="assets/images/projects/vesna/cover.jpg" alt="ЖК Весна" width="475" height="665" loading="lazy" decoding="async" sizes="(max-width: 900px) 100vw, 33vw">
         <div class="portfolio__caption">
           <span class="portfolio__date">11 / 2025</span>
           <span class="portfolio__project">ЖК «Весна»</span>
@@ -180,18 +174,40 @@
         </div>
       </div>
       <div class="portfolio__item" data-project="mushu">
-        <img src="assets/images/projects/mushu/cover.png" alt="Кафе Мушу" width="475" height="665" loading="lazy">
+        <img src="assets/images/projects/mushu/web/01.jpg" alt="Кафе Мушу" width="475" height="665" loading="lazy" decoding="async" sizes="(max-width: 900px) 100vw, 33vw">
         <div class="portfolio__caption">
           <span class="portfolio__date">02 / 2024</span>
           <span class="portfolio__project">Кафе «Мушу»</span>
           <span class="portfolio__city">Улан-Удэ · 120 м²</span>
         </div>
       </div>
-      <div class="portfolio__item portfolio__item--wide" data-project="degre-apartment">
-        <img src="assets/images/projects/degre-apartment/cover.png" alt="Интерьер проекта Degre Design" width="957" height="558" loading="lazy">
+      <div class="portfolio__item" data-project="smit">
+        <img src="assets/images/projects/smit/web/09.jpg" alt="ЖК SMIT" width="475" height="665" loading="lazy" decoding="async" sizes="(max-width: 900px) 100vw, 33vw">
+        <div class="portfolio__caption">
+          <span class="portfolio__date">2024</span>
+          <span class="portfolio__project">ЖК «SMIT»</span>
+        </div>
       </div>
-      <div class="portfolio__item" data-project="degre-detail">
-        <img src="assets/images/projects/detail/cover.png" alt="Деталь интерьера проекта Degre Design" width="475" height="558" loading="lazy">
+      <div class="portfolio__item" data-project="novo-ochakovo">
+        <img src="assets/images/projects/novo-ochakovo/web/04.jpg" alt="ЖК Новое Очаково" width="475" height="665" loading="lazy" decoding="async" sizes="(max-width: 900px) 100vw, 33vw">
+        <div class="portfolio__caption">
+          <span class="portfolio__date">2025</span>
+          <span class="portfolio__project">ЖК «Новое Очаково»</span>
+        </div>
+      </div>
+      <div class="portfolio__item" data-project="georg-landrin">
+        <img src="assets/images/projects/georg-landrin/web/05.jpg" alt="ЖК Георг Ландрин" width="475" height="665" loading="lazy" decoding="async" sizes="(max-width: 900px) 100vw, 33vw">
+        <div class="portfolio__caption">
+          <span class="portfolio__date">2023</span>
+          <span class="portfolio__project">ЖК «Георг Ландрин»</span>
+        </div>
+      </div>
+      <div class="portfolio__item" data-project="dom-daryino">
+        <img src="assets/images/projects/dom-daryino/web/02.jpg" alt="Дом Дарьино" width="475" height="665" loading="lazy" decoding="async" sizes="(max-width: 900px) 100vw, 33vw">
+        <div class="portfolio__caption">
+          <span class="portfolio__date">2024</span>
+          <span class="portfolio__project">Дом «Дарьино»</span>
+        </div>
       </div>
     </div>
   </section>
@@ -229,28 +245,29 @@
       <h2 class="contacts__title">Начнём <em>проект?</em></h2>
       <p class="contacts__desc">Напишите мне — расскажите о своём пространстве и о том, каким вы хотите его видеть. Я отвечаю в течение суток.</p>
       <div class="contacts__logo">
-        <span class="contacts__logo-name">DEGRE<span class="contacts__logo-circle"></span></span>
-        <span class="contacts__logo-tag">design</span>
+        <img src="assets/images/site/logo.png" alt="Degre Design" width="504" height="479" loading="lazy" decoding="async">
+        <span class="contacts__logo-word" aria-hidden="true">DEGRE<span class="contacts__logo-degree"></span></span>
+        <span class="contacts__logo-design" aria-hidden="true">design</span>
       </div>
     </div>
 
     <div class="contacts__right">
       <div class="contacts__block">
         <span class="contacts__label">E-mail</span>
-        <a href="mailto:Degre.design@yahoo.com" class="contacts__value">Degre.design@yahoo.com</a>
+        <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=degre.design%40yahoo.com&amp;su=%D0%9D%D0%BE%D0%B2%D1%8B%D0%B9%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82" class="contacts__value" target="_blank" rel="noopener noreferrer" aria-label="Написать письмо на Degre.design@yahoo.com через Gmail">Degre.design@yahoo.com</a>
       </div>
       <div class="contacts__block">
         <span class="contacts__label">Телефон</span>
         <a href="tel:+79817362375" class="contacts__value">+7 981 736 23 75</a>
       </div>
       <div class="contacts__socials">
-        <span class="contacts__social contacts__social--disabled">Instagram</span>
-        <span class="contacts__social contacts__social--disabled">Telegram</span>
+        <a href="https://www.instagram.com/zhenijoy/" class="contacts__social" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://t.me/zhenijoy" class="contacts__social" target="_blank" rel="noopener noreferrer">Telegram</a>
       </div>
     </div>
   </footer>
 
-  <script src="scripts/project-data.js?v=20260602-structure"></script>
-  <script src="scripts/main.js?v=20260602-structure"></script>
+  <script src="scripts/project-data.js?v=20260731-diverse-gallery"></script>
+  <script src="scripts/main.js?v=20260731-diverse-gallery"></script>
 </body>
 </html>
