@@ -1460,20 +1460,11 @@ footer,
   overscroll-behavior-x: contain;
   scroll-snap-type: x mandatory;
   padding-bottom: 20px;
-  scrollbar-width: thin;
-  scrollbar-color: var(--warm) var(--line);
+  scrollbar-width: none;
 }
 
 .project-related__grid::-webkit-scrollbar {
-  height: 4px;
-}
-
-.project-related__grid::-webkit-scrollbar-track {
-  background: var(--line);
-}
-
-.project-related__grid::-webkit-scrollbar-thumb {
-  background: var(--warm);
+  display: none;
 }
 
 .project-related__item {
