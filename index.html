@@ -7,7 +7,7 @@
   <title>Degre Design — Студия дизайна интерьера</title>
   <meta name="description" content="Degre Design — студия дизайна интерьера Евгении Лудуповой. Дизайн-проекты квартир, домов и коммерческих пространств.">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles/main.css?v=20260802-anchor-final">
+  <link rel="stylesheet" href="styles/main.css?v=20260802-ux-preview-5">
 </head>
 <body>
   <div class="page-loader" aria-hidden="true">
@@ -157,9 +157,16 @@
       <h2 class="portfolio__title">Портфолио</h2>
     </div>
 
+    <div class="portfolio__filters" role="group" aria-label="Фильтр проектов">
+      <button type="button" class="is-active" data-filter="all" aria-pressed="true">Все проекты</button>
+      <button type="button" data-filter="apartment" aria-pressed="false">Квартиры</button>
+      <button type="button" data-filter="house" aria-pressed="false">Дома</button>
+      <button type="button" data-filter="commercial" aria-pressed="false">Коммерческие пространства</button>
+    </div>
+
     <div class="portfolio__carousel">
       <div class="portfolio__grid">
-      <div class="portfolio__item" data-project="city-park">
+      <div class="portfolio__item" data-project="city-park" data-category="apartment">
         <img src="assets/images/projects/city-park/web/08.jpg" alt="ЖК City Park" width="474" height="665" loading="lazy" decoding="async" sizes="(max-width: 900px) 100vw, 33vw">
         <div class="portfolio__caption">
           <span class="portfolio__date">09 / 2023</span>
@@ -167,7 +174,7 @@
           <span class="portfolio__city">Москва · 85 м²</span>
         </div>
       </div>
-      <div class="portfolio__item" data-project="vesna">
+      <div class="portfolio__item" data-project="vesna" data-category="apartment">
         <img src="assets/images/projects/vesna/cover.jpg" alt="ЖК Весна" width="475" height="665" loading="lazy" decoding="async" sizes="(max-width: 900px) 100vw, 33vw">
         <div class="portfolio__caption">
           <span class="portfolio__date">11 / 2025</span>
@@ -175,7 +182,7 @@
           <span class="portfolio__city">Улан-Удэ · 82 м²</span>
         </div>
       </div>
-      <div class="portfolio__item" data-project="mushu">
+      <div class="portfolio__item" data-project="mushu" data-category="commercial">
         <img src="assets/images/projects/mushu/web/01.jpg" alt="Кафе Мушу" width="475" height="665" loading="lazy" decoding="async" sizes="(max-width: 900px) 100vw, 33vw">
         <div class="portfolio__caption">
           <span class="portfolio__date">02 / 2024</span>
@@ -183,35 +190,35 @@
           <span class="portfolio__city">Улан-Удэ · 120 м²</span>
         </div>
       </div>
-      <div class="portfolio__item" data-project="smit">
+      <div class="portfolio__item" data-project="smit" data-category="apartment">
         <img src="assets/images/projects/smit/web/09.jpg" alt="ЖК SMIT" width="475" height="665" loading="lazy" decoding="async" sizes="(max-width: 900px) 100vw, 33vw">
         <div class="portfolio__caption">
           <span class="portfolio__date">2024</span>
           <span class="portfolio__project">ЖК «SMIT»</span>
         </div>
       </div>
-      <div class="portfolio__item" data-project="novo-ochakovo">
+      <div class="portfolio__item" data-project="novo-ochakovo" data-category="apartment">
         <img src="assets/images/projects/novo-ochakovo/web/04.jpg" alt="ЖК Новое Очаково" width="475" height="665" loading="lazy" decoding="async" sizes="(max-width: 900px) 100vw, 33vw">
         <div class="portfolio__caption">
           <span class="portfolio__date">2025</span>
           <span class="portfolio__project">ЖК «Новое Очаково»</span>
         </div>
       </div>
-      <div class="portfolio__item" data-project="georg-landrin">
+      <div class="portfolio__item" data-project="georg-landrin" data-category="apartment">
         <img src="assets/images/projects/georg-landrin/web/05.jpg" alt="ЖК Георг Ландрин" width="475" height="665" loading="lazy" decoding="async" sizes="(max-width: 900px) 100vw, 33vw">
         <div class="portfolio__caption">
           <span class="portfolio__date">2023</span>
           <span class="portfolio__project">ЖК «Георг Ландрин»</span>
         </div>
       </div>
-      <div class="portfolio__item" data-project="dom-daryino">
+      <div class="portfolio__item" data-project="dom-daryino" data-category="house">
         <img src="assets/images/projects/dom-daryino/web/02.jpg" alt="Дом Дарьино" width="475" height="665" loading="lazy" decoding="async" sizes="(max-width: 900px) 100vw, 33vw">
         <div class="portfolio__caption">
           <span class="portfolio__date">2024</span>
           <span class="portfolio__project">Дом «Дарьино»</span>
         </div>
       </div>
-      <div class="portfolio__item" data-project="talisman">
+      <div class="portfolio__item" data-project="talisman" data-category="apartment">
         <img src="assets/images/projects/talisman/cover.jpg" alt="ЖК Талисман" width="2500" height="1500" loading="lazy" decoding="async" sizes="(max-width: 900px) 100vw, 33vw">
         <div class="portfolio__caption">
           <span class="portfolio__date">07 / 2025</span>
@@ -219,7 +226,7 @@
           <span class="portfolio__city">Москва · 76,23 м²</span>
         </div>
       </div>
-      <div class="portfolio__item" data-project="300-barista">
+      <div class="portfolio__item" data-project="300-barista" data-category="commercial">
         <img src="assets/images/projects/300-barista/web/01.jpg" alt="Кофейня Триста Бариста" width="1800" height="1170" loading="lazy" decoding="async" sizes="(max-width: 900px) 100vw, 33vw">
         <div class="portfolio__caption">
           <span class="portfolio__project">«Триста Бариста»</span>
@@ -284,6 +291,48 @@
       </div>
     </div>
 
+    <form class="contact-form" id="contact-form">
+      <div class="contact-form__heading">
+        <span class="contact-form__eyebrow">Коротко о проекте</span>
+        <p>Заполните четыре поля — откроется готовое письмо, которое останется только отправить.</p>
+      </div>
+
+      <div class="contact-form__fields">
+        <label class="contact-form__field">
+          <span>Имя</span>
+          <input type="text" name="name" autocomplete="name" required>
+        </label>
+        <label class="contact-form__field">
+          <span>Telegram или телефон</span>
+          <input type="text" name="contact" autocomplete="tel" required>
+        </label>
+        <label class="contact-form__field">
+          <span>Тип объекта</span>
+          <select name="objectType" required>
+            <option value="" selected disabled>Выберите вариант</option>
+            <option>Квартира</option>
+            <option>Дом</option>
+            <option>Коммерческое пространство</option>
+            <option>Другое</option>
+          </select>
+        </label>
+        <label class="contact-form__field">
+          <span>Площадь, м²</span>
+          <input type="text" name="area" inputmode="decimal" placeholder="Например, 85" required>
+        </label>
+      </div>
+
+      <label class="contact-form__consent">
+        <input type="checkbox" name="consent" required>
+        <span>Я согласен(на) на обработку данных согласно <a href="privacy.html">политике конфиденциальности</a>.</span>
+      </label>
+
+      <div class="contact-form__actions">
+        <button type="submit">Подготовить письмо</button>
+        <p class="contact-form__status" aria-live="polite"></p>
+      </div>
+    </form>
+
     <div class="footer-legal footer-legal--dark">
       <span>© 2026 Degre Design</span>
       <a href="privacy.html">Политика конфиденциальности</a>
@@ -291,6 +340,6 @@
   </footer>
 
   <script src="scripts/project-data.js?v=20260802-300-barista-default-plan"></script>
-  <script src="scripts/main.js?v=20260802-anchor-fix"></script>
+  <script src="scripts/main.js?v=20260802-ux-preview-5"></script>
 </body>
 </html>

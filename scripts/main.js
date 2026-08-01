@@ -170,6 +170,75 @@ const renderProjectPage = () => {
       galleryItems.appendChild(img);
     });
     gallery.replaceChildren(galleryItems);
+
+    const galleryImages = [...gallery.querySelectorAll('img')];
+    let galleryLayoutFrame;
+
+    const layoutProjectGallery = () => {
+      cancelAnimationFrame(galleryLayoutFrame);
+      galleryLayoutFrame = requestAnimationFrame(() => {
+        gallery.replaceChildren(...galleryImages);
+        galleryImages.forEach((img) => {
+          img.style.width = '';
+          img.style.height = '';
+        });
+
+        if (window.innerWidth < 768) return;
+
+        const styles = getComputedStyle(gallery);
+        const horizontalPadding = parseFloat(styles.paddingLeft) + parseFloat(styles.paddingRight);
+        const availableWidth = gallery.clientWidth - horizontalPadding;
+        const gap = 8;
+        const targetHeight = Math.min(620, Math.max(380, window.innerWidth * 0.32));
+        const rows = [];
+        let currentRow = [];
+        let ratioSum = 0;
+
+        galleryImages.forEach((img) => {
+          const ratio = img.naturalWidth && img.naturalHeight
+            ? img.naturalWidth / img.naturalHeight
+            : 1.5;
+          currentRow.push({ img, ratio });
+          ratioSum += ratio;
+
+          if ((ratioSum * targetHeight) + (gap * (currentRow.length - 1)) >= availableWidth) {
+            rows.push({ items: currentRow, ratioSum, complete: true });
+            currentRow = [];
+            ratioSum = 0;
+          }
+        });
+
+        if (currentRow.length) {
+          rows.push({ items: currentRow, ratioSum, complete: false });
+        }
+
+        const fragment = document.createDocumentFragment();
+        rows.forEach(({ items, ratioSum: rowRatio, complete }) => {
+          const row = document.createElement('div');
+          row.className = 'project-gallery__row';
+          const fittedHeight = (availableWidth - gap * (items.length - 1)) / rowRatio;
+          const rowHeight = complete ? fittedHeight : Math.min(targetHeight, fittedHeight);
+
+          items.forEach(({ img, ratio }) => {
+            img.style.width = `${ratio * rowHeight}px`;
+            img.style.height = `${rowHeight}px`;
+            row.appendChild(img);
+          });
+          fragment.appendChild(row);
+        });
+        gallery.replaceChildren(fragment);
+      });
+    };
+
+    galleryImages.forEach((img) => {
+      if (!img.complete) {
+        img.addEventListener('load', layoutProjectGallery, { once: true });
+        img.addEventListener('error', layoutProjectGallery, { once: true });
+      }
+    });
+
+    layoutProjectGallery();
+    window.addEventListener('resize', layoutProjectGallery);
   }
 
   const lightboxSources = [project.cover, ...project.gallery]
@@ -187,7 +256,11 @@ const renderProjectPage = () => {
       <button class="lightbox__prev" type="button" aria-label="Предыдущая фотография">←</button>
       <figure class="lightbox__figure">
         <img class="lightbox__image" alt="">
-        <figcaption class="lightbox__counter"></figcaption>
+        <figcaption class="lightbox__meta">
+          <span class="lightbox__counter"></span>
+          <span class="lightbox__progress" aria-hidden="true"><span></span></span>
+        </figcaption>
+        <div class="lightbox__thumbs" aria-label="Миниатюры фотографий"></div>
       </figure>
       <button class="lightbox__next" type="button" aria-label="Следующая фотография">→</button>
     `;
@@ -195,6 +268,8 @@ const renderProjectPage = () => {
 
     const lightboxImage = lightbox.querySelector('.lightbox__image');
     const lightboxCounter = lightbox.querySelector('.lightbox__counter');
+    const lightboxProgress = lightbox.querySelector('.lightbox__progress span');
+    const lightboxThumbs = lightbox.querySelector('.lightbox__thumbs');
     const closeButton = lightbox.querySelector('.lightbox__close');
     const previousButton = lightbox.querySelector('.lightbox__prev');
     const nextButton = lightbox.querySelector('.lightbox__next');
@@ -202,11 +277,36 @@ const renderProjectPage = () => {
     let previousFocus = null;
     let touchStartX = 0;
 
+    lightboxSources.forEach((src, index) => {
+      const thumbnail = document.createElement('button');
+      thumbnail.type = 'button';
+      thumbnail.className = 'lightbox__thumb';
+      thumbnail.setAttribute('aria-label', `Показать изображение ${index + 1}`);
+
+      const image = document.createElement('img');
+      image.src = src;
+      image.alt = '';
+      image.loading = 'lazy';
+      image.decoding = 'async';
+
+      thumbnail.appendChild(image);
+      thumbnail.addEventListener('click', () => showImage(index));
+      lightboxThumbs.appendChild(thumbnail);
+    });
+
     const showImage = index => {
       activeIndex = (index + lightboxSources.length) % lightboxSources.length;
       lightboxImage.src = lightboxSources[activeIndex];
       lightboxImage.alt = `${project.title} — изображение ${activeIndex + 1}`;
       lightboxCounter.textContent = `${activeIndex + 1} / ${lightboxSources.length}`;
+      lightboxProgress.style.width = `${((activeIndex + 1) / lightboxSources.length) * 100}%`;
+
+      lightboxThumbs.querySelectorAll('.lightbox__thumb').forEach((thumbnail, thumbnailIndex) => {
+        const isActive = thumbnailIndex === activeIndex;
+        thumbnail.classList.toggle('is-active', isActive);
+        thumbnail.setAttribute('aria-current', isActive ? 'true' : 'false');
+        if (isActive) thumbnail.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      });
     };
 
     const openLightbox = index => {
@@ -357,6 +457,110 @@ const renderProjectPage = () => {
 
 renderProjectPage();
 
+/* Быстрая форма обращения: сайт ничего не сохраняет,
+   а открывает подготовленное письмо в Gmail. */
+const contactForm = document.querySelector('#contact-form');
+
+if (contactForm) {
+  contactForm.addEventListener('submit', event => {
+    event.preventDefault();
+    if (!contactForm.reportValidity()) return;
+
+    const data = new FormData(contactForm);
+    const body = [
+      `Имя: ${data.get('name')}`,
+      `Telegram или телефон: ${data.get('contact')}`,
+      `Тип объекта: ${data.get('objectType')}`,
+      `Площадь: ${data.get('area')} м²`,
+    ].join('\n');
+    const params = new URLSearchParams({
+      view: 'cm',
+      fs: '1',
+      to: 'degre.design@yahoo.com',
+      su: 'Запрос на дизайн-проект с сайта',
+      body,
+    });
+    const status = contactForm.querySelector('.contact-form__status');
+    window.open(`https://mail.google.com/mail/?${params.toString()}`, '_blank', 'noopener,noreferrer');
+
+    if (status) {
+      status.textContent = 'Письмо подготовлено в новой вкладке.';
+    }
+  });
+}
+
+/* Кнопка возврата к началу длинной страницы */
+const backToTop = document.createElement('button');
+backToTop.type = 'button';
+backToTop.className = 'back-to-top';
+backToTop.setAttribute('aria-label', 'Вернуться к началу страницы');
+backToTop.textContent = '↑';
+document.body.appendChild(backToTop);
+
+const updateBackToTop = () => {
+  backToTop.classList.toggle('is-visible', window.scrollY > window.innerHeight * 1.8);
+};
+
+window.addEventListener('scroll', updateBackToTop, { passive: true });
+backToTop.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+updateBackToTop();
+
+/* Быстрый контакт на телефоне */
+const quickContact = document.createElement('div');
+quickContact.className = 'quick-contact';
+const contactsHref = document.body.classList.contains('project-page') ? 'index.html#contacts' : '#contacts';
+quickContact.innerHTML = `
+  <div class="quick-contact__menu" id="quick-contact-menu">
+    <a href="https://t.me/zhenijoy" target="_blank" rel="noopener noreferrer">Telegram</a>
+    <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=degre.design%40yahoo.com&amp;su=%D0%9D%D0%BE%D0%B2%D1%8B%D0%B9%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82" target="_blank" rel="noopener noreferrer">E-mail</a>
+    <a href="${contactsHref}">Контакты</a>
+  </div>
+  <button class="quick-contact__toggle" type="button" aria-expanded="false" aria-controls="quick-contact-menu">
+    Обсудить проект
+  </button>
+`;
+document.body.appendChild(quickContact);
+
+const quickContactToggle = quickContact.querySelector('.quick-contact__toggle');
+const closeQuickContact = () => {
+  quickContact.classList.remove('is-open');
+  quickContactToggle.setAttribute('aria-expanded', 'false');
+};
+
+quickContactToggle.addEventListener('click', () => {
+  const isOpen = quickContact.classList.toggle('is-open');
+  quickContactToggle.setAttribute('aria-expanded', String(isOpen));
+});
+quickContact.querySelectorAll('a').forEach(link => link.addEventListener('click', closeQuickContact));
+document.addEventListener('click', event => {
+  if (!quickContact.contains(event.target)) closeQuickContact();
+});
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape') closeQuickContact();
+});
+
+/* Активный пункт компактной навигации по странице проекта */
+const projectSectionsNav = document.querySelector('.project-sections');
+if (projectSectionsNav) {
+  const projectSectionLinks = [...projectSectionsNav.querySelectorAll('a')];
+  const projectSectionTargets = projectSectionLinks
+    .map(link => document.querySelector(link.getAttribute('href')))
+    .filter(Boolean);
+
+  const projectSectionObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      projectSectionLinks.forEach(link => {
+        link.classList.toggle('is-active', link.getAttribute('href') === `#${entry.target.id}`);
+      });
+    });
+  }, { rootMargin: '-35% 0px -55% 0px', threshold: 0 });
+
+  projectSectionTargets.forEach(section => projectSectionObserver.observe(section));
+}
+
 /* Бесконечная мобильная лента портфолио.
    Копии крайних карточек позволяют продолжать свайп в обе стороны,
    а после остановки позиция незаметно переносится на оригинал. */
@@ -364,12 +568,15 @@ const portfolioGrid = document.querySelector('.portfolio__grid');
 
 if (portfolioGrid) {
   const cards = [...portfolioGrid.querySelectorAll('.portfolio__item')];
+  const filterButtons = [...document.querySelectorAll('.portfolio__filters button')];
   const mobilePortfolio = window.matchMedia('(max-width: 767px)');
+  let clones = [];
+  let portfolioLayoutFrame;
 
-  if (cards.length > 1) {
-    const cardStep = () => cards[0].getBoundingClientRect().width + 8;
+  if (cards.length) {
+    const visibleCards = () => cards.filter(card => !card.hidden);
+    const cardStep = () => (visibleCards()[0]?.getBoundingClientRect().width || 0) + 8;
     const jumpToFirst = () => portfolioGrid.scrollTo({ left: cardStep(), behavior: 'instant' });
-    let clones = [];
 
     const openCloneProject = event => {
       const clone = event.currentTarget;
@@ -380,9 +587,14 @@ if (portfolioGrid) {
 
     const setupLoop = () => {
       if (!mobilePortfolio.matches || clones.length) return;
+      const activeCards = visibleCards();
+      if (activeCards.length < 2) {
+        portfolioGrid.scrollLeft = 0;
+        return;
+      }
 
-      const firstClone = cards[0].cloneNode(true);
-      const lastClone = cards[cards.length - 1].cloneNode(true);
+      const firstClone = activeCards[0].cloneNode(true);
+      const lastClone = activeCards[activeCards.length - 1].cloneNode(true);
       clones = [lastClone, firstClone];
 
       clones.forEach(clone => {
@@ -402,12 +614,75 @@ if (portfolioGrid) {
       portfolioGrid.scrollLeft = 0;
     };
 
+    const layoutPortfolio = () => {
+      cancelAnimationFrame(portfolioLayoutFrame);
+      portfolioLayoutFrame = requestAnimationFrame(() => {
+        removeLoop();
+        portfolioGrid.replaceChildren(...cards);
+        cards.forEach(card => {
+          card.style.width = '';
+          card.style.height = '';
+        });
+
+        if (mobilePortfolio.matches) {
+          setupLoop();
+          return;
+        }
+
+        const activeCards = visibleCards();
+        const styles = getComputedStyle(portfolioGrid);
+        const horizontalPadding = parseFloat(styles.paddingLeft) + parseFloat(styles.paddingRight);
+        const availableWidth = portfolioGrid.clientWidth - horizontalPadding;
+        const gap = 8;
+        const targetHeight = Math.min(560, Math.max(400, window.innerWidth * 0.3));
+        const rows = [];
+        let currentRow = [];
+        let ratioSum = 0;
+
+        activeCards.forEach(card => {
+          const image = card.querySelector('img');
+          const ratio = image?.naturalWidth && image?.naturalHeight
+            ? image.naturalWidth / image.naturalHeight
+            : 475 / 665;
+          currentRow.push({ card, ratio });
+          ratioSum += ratio;
+
+          if ((ratioSum * targetHeight) + (gap * (currentRow.length - 1)) >= availableWidth) {
+            rows.push({ items: currentRow, ratioSum, complete: true });
+            currentRow = [];
+            ratioSum = 0;
+          }
+        });
+
+        if (currentRow.length) {
+          rows.push({ items: currentRow, ratioSum, complete: false });
+        }
+
+        const fragment = document.createDocumentFragment();
+        rows.forEach(({ items, ratioSum: rowRatio, complete }) => {
+          const row = document.createElement('div');
+          row.className = 'portfolio__row';
+          const fittedHeight = (availableWidth - gap * (items.length - 1)) / rowRatio;
+          const rowHeight = complete ? fittedHeight : Math.min(targetHeight, fittedHeight);
+
+          items.forEach(({ card, ratio }) => {
+            card.style.width = `${ratio * rowHeight}px`;
+            card.style.height = `${rowHeight}px`;
+            row.appendChild(card);
+          });
+          fragment.appendChild(row);
+        });
+        portfolioGrid.replaceChildren(fragment);
+      });
+    };
+
     const normalizeLoopPosition = () => {
       if (!mobilePortfolio.matches || !clones.length) return;
+      const activeCards = visibleCards();
       const step = cardStep();
       if (portfolioGrid.scrollLeft <= step * 0.25) {
-        portfolioGrid.scrollTo({ left: step * cards.length, behavior: 'instant' });
-      } else if (portfolioGrid.scrollLeft >= step * (cards.length + 0.75)) {
+        portfolioGrid.scrollTo({ left: step * activeCards.length, behavior: 'instant' });
+      } else if (portfolioGrid.scrollLeft >= step * (activeCards.length + 0.75)) {
         portfolioGrid.scrollTo({ left: step, behavior: 'instant' });
       }
     };
@@ -419,11 +694,39 @@ if (portfolioGrid) {
     }, { passive: true });
 
     mobilePortfolio.addEventListener('change', event => {
-      if (event.matches) setupLoop();
-      else removeLoop();
+      layoutPortfolio();
     });
 
-    setupLoop();
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const category = button.dataset.filter;
+        removeLoop();
+        portfolioGrid.replaceChildren(...cards);
+
+        cards.forEach(card => {
+          card.hidden = category !== 'all' && card.dataset.category !== category;
+        });
+        portfolioGrid.classList.toggle('is-filtered', category !== 'all');
+
+        filterButtons.forEach(currentButton => {
+          const isActive = currentButton === button;
+          currentButton.classList.toggle('is-active', isActive);
+          currentButton.setAttribute('aria-pressed', String(isActive));
+        });
+
+        layoutPortfolio();
+      });
+    });
+
+    cards.forEach(card => {
+      const image = card.querySelector('img');
+      if (image && !image.complete) {
+        image.addEventListener('load', layoutPortfolio, { once: true });
+        image.addEventListener('error', layoutPortfolio, { once: true });
+      }
+    });
+    window.addEventListener('resize', layoutPortfolio);
+    layoutPortfolio();
   }
 }
 

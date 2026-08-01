@@ -7,7 +7,7 @@
   <title>Degre Design — ЖК City Park</title>
   <meta name="description" content="Страница проекта Degre Design с параметрами, планировкой и галереей интерьера.">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles/main.css?v=20260802-hidden-scrollbar">
+  <link rel="stylesheet" href="styles/main.css?v=20260802-ux-preview-5">
 </head>
 <body class="project-page">
   <nav class="nav project-nav">
@@ -24,6 +24,13 @@
     </ul>
   </nav>
 
+  <nav class="project-sections" aria-label="Навигация по проекту">
+    <a href="#project-about">О проекте</a>
+    <a href="#plans">Планировка</a>
+    <a href="#project-gallery">Галерея</a>
+    <a href="#related-projects">Другие проекты</a>
+  </nav>
+
   <main>
     <section class="project-hero">
       <a class="project-hero__back" href="index.html#portfolio">Назад к портфолио</a>
@@ -36,7 +43,7 @@
       </div>
     </section>
 
-    <section class="project-info" aria-label="Параметры проекта">
+    <section class="project-info" id="project-about" aria-label="Параметры проекта">
       <p class="project-info__lead">
         Интерьер квартиры в классической спокойной палитре: спальня с мягкой текстильной зоной,
         компактная кухня, приватный санузел и гостиная с зелёным диваном как главным акцентом.
@@ -109,9 +116,9 @@
       </div>
     </section>
 
-    <section class="project-gallery" aria-label="Рендеры проекта"></section>
+    <section class="project-gallery" id="project-gallery" aria-label="Рендеры проекта"></section>
 
-    <section class="project-related" aria-label="Посмотреть другие проекты">
+    <section class="project-related" id="related-projects" aria-label="Посмотреть другие проекты">
       <h2 class="project-related__title">Посмотреть другие проекты</h2>
       <div class="project-related__grid"></div>
     </section>
@@ -134,6 +141,6 @@
   </div>
 
   <script src="scripts/project-data.js?v=20260802-300-barista-default-plan"></script>
-  <script src="scripts/main.js?v=20260802-related-loop"></script>
+  <script src="scripts/main.js?v=20260802-ux-preview-5"></script>
 </body>
 </html>
