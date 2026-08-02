@@ -457,8 +457,8 @@ const renderProjectPage = () => {
 
 renderProjectPage();
 
-/* Быстрая форма обращения: сайт ничего не сохраняет,
-   а открывает подготовленное письмо в Gmail. */
+/* Быстрая форма обращения: сайт ничего не сохраняет.
+   На телефоне открывается почтовое приложение, на больших экранах — Gmail. */
 const contactForm = document.querySelector('#contact-form');
 
 if (contactForm) {
@@ -481,10 +481,22 @@ if (contactForm) {
       body,
     });
     const status = contactForm.querySelector('.contact-form__status');
-    window.open(`https://mail.google.com/mail/?${params.toString()}`, '_blank', 'noopener,noreferrer');
+    const isMobileMail = window.matchMedia('(max-width: 767px)').matches;
+
+    if (isMobileMail) {
+      const mailParams = new URLSearchParams({
+        subject: 'Запрос на дизайн-проект с сайта',
+        body,
+      });
+      window.location.href = `mailto:degre.design@yahoo.com?${mailParams.toString()}`;
+    } else {
+      window.open(`https://mail.google.com/mail/?${params.toString()}`, '_blank', 'noopener,noreferrer');
+    }
 
     if (status) {
-      status.textContent = 'Письмо подготовлено в новой вкладке.';
+      status.textContent = isMobileMail
+        ? 'Письмо подготовлено в почтовом приложении.'
+        : 'Письмо подготовлено в новой вкладке.';
     }
   });
 }
@@ -514,7 +526,7 @@ const contactsHref = document.body.classList.contains('project-page') ? 'index.h
 quickContact.innerHTML = `
   <div class="quick-contact__menu" id="quick-contact-menu">
     <a href="https://t.me/zhenijoy" target="_blank" rel="noopener noreferrer">Telegram</a>
-    <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=degre.design%40yahoo.com&amp;su=%D0%9D%D0%BE%D0%B2%D1%8B%D0%B9%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82" target="_blank" rel="noopener noreferrer">E-mail</a>
+    <a href="mailto:degre.design@yahoo.com?subject=%D0%9D%D0%BE%D0%B2%D1%8B%D0%B9%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82">E-mail</a>
     <a href="${contactsHref}">Контакты</a>
   </div>
   <button class="quick-contact__toggle" type="button" aria-expanded="false" aria-controls="quick-contact-menu">

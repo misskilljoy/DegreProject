@@ -1325,20 +1325,23 @@ footer,
 
 .quick-contact__toggle {
   min-height: 48px;
-  border: 1px solid var(--dark);
+  border: 2px solid rgba(242, 237, 230, 0.92);
   border-radius: 999px;
-  background: var(--dark);
+  background: #312c27;
   padding: 10px 18px;
   font-family: var(--sans);
   font-size: var(--fs-sub-note);
   font-weight: 300;
   letter-spacing: 0.08em;
   color: var(--light);
-  box-shadow: 0 6px 22px rgba(24,21,18,0.2);
+  box-shadow: 0 8px 26px rgba(0,0,0,0.34);
   cursor: pointer;
 }
 
 .quick-contact__menu {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 8px);
   min-width: 180px;
   display: grid;
   border: 1px solid var(--line);
@@ -1669,16 +1672,24 @@ footer,
   overflow: hidden;
 }
 
+.lightbox-open .back-to-top,
+.lightbox-open .quick-contact {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
 .lightbox {
   position: fixed;
   inset: 0;
   z-index: 1000;
   display: grid;
-  grid-template-columns: 48px minmax(0, 1fr) 48px;
+  grid-template-columns: minmax(0, 1fr);
   align-items: center;
-  gap: 6px;
-  padding: max(60px, env(safe-area-inset-top)) 10px max(24px, env(safe-area-inset-bottom));
-  background: rgba(18, 16, 14, 0.96);
+  padding: max(52px, env(safe-area-inset-top)) 8px max(18px, env(safe-area-inset-bottom));
+  background: #12100e;
+  touch-action: pan-y;
+  overscroll-behavior: contain;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -1692,6 +1703,7 @@ footer,
 }
 
 .lightbox__figure {
+  width: 100%;
   min-width: 0;
   display: grid;
   place-items: center;
@@ -1701,12 +1713,12 @@ footer,
 .lightbox__image {
   display: block;
   max-width: 100%;
-  max-height: calc(100vh - 220px);
+  max-height: calc(100dvh - 130px);
   object-fit: contain;
 }
 
 .lightbox__meta {
-  width: min(520px, 76vw);
+  width: min(520px, 100%);
   display: grid;
   grid-template-columns: auto minmax(100px, 1fr);
   align-items: center;
@@ -1736,8 +1748,8 @@ footer,
 }
 
 .lightbox__thumbs {
-  width: min(760px, 76vw);
-  display: flex;
+  width: min(760px, 100%);
+  display: none;
   gap: 8px;
   overflow-x: auto;
   padding: 2px;
@@ -1788,15 +1800,23 @@ footer,
   font-family: var(--sans);
   font-size: 36px;
   font-weight: 300;
+  z-index: 2;
 }
 
 .lightbox__prev,
 .lightbox__next {
+  display: none;
+  position: absolute;
+  top: 50%;
+  z-index: 2;
   width: 48px;
   height: 48px;
   font-family: var(--serif);
   font-size: var(--fs-signature);
 }
+
+.lightbox__prev { left: 4px; }
+.lightbox__next { right: 4px; }
 
 .project-related {
   padding: 48px var(--pad-side) 56px;
@@ -2009,6 +2029,18 @@ footer,
 
 .legal__body p:last-child { margin-bottom: 0; }
 
+.legal__body ul {
+  display: grid;
+  gap: 10px;
+  margin: 0 0 18px;
+  padding-left: 1.25em;
+  list-style: disc;
+}
+
+.legal__body li {
+  padding-left: 0.25em;
+}
+
 .legal__body a {
   color: var(--accent);
   text-decoration: underline;
@@ -2022,7 +2054,7 @@ footer,
   gap: 8px 24px;
   justify-content: space-between;
   align-items: baseline;
-  padding: 18px clamp(18px, 6vw, 68px);
+  padding: 18px clamp(18px, 6vw, 68px) calc(104px + env(safe-area-inset-bottom));
   border-top: 1px solid var(--line);
   font-family: var(--sans);
   font-weight: 300;
@@ -2045,8 +2077,19 @@ footer,
   grid-column: 1 / -1;
   align-self: end;
   border-top-color: rgba(250, 248, 245, 0.18);
-  padding: 24px 0 0;
+  padding: 24px 0 calc(104px + env(safe-area-inset-bottom));
   margin-top: 56px;
+}
+
+.project-page .footer-legal {
+  padding-bottom: 18px;
+}
+
+.project-page::after {
+  content: "";
+  display: block;
+  height: calc(120px + env(safe-area-inset-bottom));
+  background: var(--cream);
 }
 
 /* ══════════════════════════════════════
@@ -2062,6 +2105,31 @@ footer,
     right: max(18px, env(safe-area-inset-right));
     bottom: max(84px, calc(env(safe-area-inset-bottom) + 84px));
     left: auto;
+  }
+
+  .lightbox {
+    grid-template-columns: 48px minmax(0, 1fr) 48px;
+    gap: 6px;
+    padding: max(60px, env(safe-area-inset-top)) 10px max(24px, env(safe-area-inset-bottom));
+  }
+
+  .lightbox__image {
+    max-height: calc(100vh - 220px);
+  }
+
+  .lightbox__meta {
+    width: min(520px, 76vw);
+  }
+
+  .lightbox__thumbs {
+    display: flex;
+    width: min(760px, 76vw);
+  }
+
+  .lightbox__prev,
+  .lightbox__next {
+    display: block;
+    position: static;
   }
 
   /* HERO — двухколоночная сетка Figma 50.7/49.3 */
