@@ -808,6 +808,11 @@ footer,
 
 .portfolio__grid::-webkit-scrollbar { display: none; }
 
+.portfolio__grid.is-loop-resetting {
+  scroll-snap-type: none;
+  scroll-behavior: auto;
+}
+
 .portfolio__item {
   position: relative;
   overflow: hidden;

@@ -574,8 +574,8 @@ if (projectSectionsNav) {
 }
 
 /* Бесконечная мобильная лента портфолио.
-   Копии крайних карточек позволяют продолжать свайп в обе стороны,
-   а после остановки позиция незаметно переносится на оригинал. */
+   Полные копии набора с обеих сторон позволяют переносить позицию
+   между визуально идентичными карточками без заметного скачка. */
 const portfolioGrid = document.querySelector('.portfolio__grid');
 
 if (portfolioGrid) {
@@ -587,8 +587,6 @@ if (portfolioGrid) {
 
   if (cards.length) {
     const visibleCards = () => cards.filter(card => !card.hidden);
-    const cardStep = () => (visibleCards()[0]?.getBoundingClientRect().width || 0) + 8;
-    const jumpToFirst = () => portfolioGrid.scrollTo({ left: cardStep(), behavior: 'instant' });
 
     const openCloneProject = event => {
       const clone = event.currentTarget;
@@ -605,19 +603,31 @@ if (portfolioGrid) {
         return;
       }
 
-      const firstClone = activeCards[0].cloneNode(true);
-      const lastClone = activeCards[activeCards.length - 1].cloneNode(true);
-      clones = [lastClone, firstClone];
-
-      clones.forEach(clone => {
+      const createClone = card => {
+        const clone = card.cloneNode(true);
         clone.classList.add('portfolio__item--clone');
+        clone.setAttribute('aria-hidden', 'true');
+        clone.setAttribute('tabindex', '-1');
         clone.addEventListener('click', openCloneProject);
         clone.addEventListener('keydown', openCloneProject);
-      });
+        return clone;
+      };
+      const leadingClones = activeCards.map(createClone);
+      const trailingClones = activeCards.map(createClone);
+      clones = [...leadingClones, ...trailingClones];
 
-      portfolioGrid.prepend(lastClone);
-      portfolioGrid.append(firstClone);
-      window.requestAnimationFrame(jumpToFirst);
+      const leadingFragment = document.createDocumentFragment();
+      leadingClones.forEach(clone => leadingFragment.appendChild(clone));
+      portfolioGrid.prepend(leadingFragment);
+      trailingClones.forEach(clone => portfolioGrid.appendChild(clone));
+
+      window.requestAnimationFrame(() => {
+        const paddingLeft = parseFloat(getComputedStyle(portfolioGrid).paddingLeft);
+        portfolioGrid.scrollTo({
+          left: activeCards[0].offsetLeft - paddingLeft,
+          behavior: 'instant',
+        });
+      });
     };
 
     const removeLoop = () => {
@@ -647,11 +657,14 @@ if (portfolioGrid) {
         const availableWidth = portfolioGrid.clientWidth - horizontalPadding;
         const gap = 8;
         const targetHeight = Math.min(560, Math.max(400, window.innerWidth * 0.3));
+        const useFeaturedRow = !portfolioGrid.classList.contains('is-filtered') && activeCards.length >= 3;
+        const featuredCards = useFeaturedRow ? activeCards.slice(0, 3) : [];
+        const layoutCards = useFeaturedRow ? activeCards.slice(3) : activeCards;
         const rows = [];
         let currentRow = [];
         let ratioSum = 0;
 
-        activeCards.forEach(card => {
+        layoutCards.forEach(card => {
           const image = card.querySelector('img');
           const ratio = image?.naturalWidth && image?.naturalHeight
             ? image.naturalWidth / image.naturalHeight
@@ -671,6 +684,20 @@ if (portfolioGrid) {
         }
 
         const fragment = document.createDocumentFragment();
+        if (featuredCards.length) {
+          const featuredRow = document.createElement('div');
+          featuredRow.className = 'portfolio__row portfolio__row--featured';
+          const featuredWidth = (availableWidth - gap * 2) / 3;
+          const featuredHeight = featuredWidth * (665 / 475);
+
+          featuredCards.forEach(card => {
+            card.style.width = `${featuredWidth}px`;
+            card.style.height = `${featuredHeight}px`;
+            featuredRow.appendChild(card);
+          });
+          fragment.appendChild(featuredRow);
+        }
+
         rows.forEach(({ items, ratioSum: rowRatio, complete }) => {
           const row = document.createElement('div');
           row.className = 'portfolio__row';
@@ -689,15 +716,40 @@ if (portfolioGrid) {
     };
 
     const normalizeLoopPosition = () => {
-      if (!mobilePortfolio.matches || !clones.length) return;
+      if (
+        !mobilePortfolio.matches
+        || !clones.length
+        || portfolioGrid.classList.contains('is-loop-resetting')
+      ) return;
       const activeCards = visibleCards();
-      const step = cardStep();
-      if (portfolioGrid.scrollLeft <= step * 0.25) {
-        portfolioGrid.scrollTo({ left: step * activeCards.length, behavior: 'instant' });
-      } else if (portfolioGrid.scrollLeft >= step * (activeCards.length + 0.75)) {
-        portfolioGrid.scrollTo({ left: step, behavior: 'instant' });
+      const firstTrailingClone = clones[activeCards.length];
+      if (!activeCards[0] || !firstTrailingClone) return;
+
+      const paddingLeft = parseFloat(getComputedStyle(portfolioGrid).paddingLeft);
+      const originalStart = activeCards[0].offsetLeft - paddingLeft;
+      const trailingStart = firstTrailingClone.offsetLeft - paddingLeft;
+      const setWidth = trailingStart - originalStart;
+      if (setWidth <= 0) return;
+
+      let nextPosition = null;
+      if (portfolioGrid.scrollLeft < originalStart - setWidth * 0.5) {
+        nextPosition = portfolioGrid.scrollLeft + setWidth;
+      } else if (portfolioGrid.scrollLeft >= originalStart + setWidth * 1.5) {
+        nextPosition = portfolioGrid.scrollLeft - setWidth;
+      }
+
+      if (nextPosition !== null) {
+        portfolioGrid.classList.add('is-loop-resetting');
+        void portfolioGrid.offsetWidth;
+        portfolioGrid.scrollLeft = nextPosition;
       }
     };
+
+    const restoreLoopSnap = () => {
+      portfolioGrid.classList.remove('is-loop-resetting');
+    };
+    portfolioGrid.addEventListener('touchstart', restoreLoopSnap, { passive: true });
+    portfolioGrid.addEventListener('pointerdown', restoreLoopSnap, { passive: true });
 
     let scrollTimer;
     portfolioGrid.addEventListener('scroll', () => {
@@ -733,8 +785,11 @@ if (portfolioGrid) {
     cards.forEach(card => {
       const image = card.querySelector('img');
       if (image && !image.complete) {
-        image.addEventListener('load', layoutPortfolio, { once: true });
-        image.addEventListener('error', layoutPortfolio, { once: true });
+        const relayoutDesktopPortfolio = () => {
+          if (!mobilePortfolio.matches) layoutPortfolio();
+        };
+        image.addEventListener('load', relayoutDesktopPortfolio, { once: true });
+        image.addEventListener('error', relayoutDesktopPortfolio, { once: true });
       }
     });
     window.addEventListener('resize', layoutPortfolio);
