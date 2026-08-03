@@ -467,11 +467,19 @@ if (contactForm) {
     if (!contactForm.reportValidity()) return;
 
     const data = new FormData(contactForm);
+    const submittedAt = new Date().toISOString();
     const body = [
       `Имя: ${data.get('name')}`,
       `Telegram или телефон: ${data.get('contact')}`,
       `Тип объекта: ${data.get('objectType')}`,
       `Площадь: ${data.get('area')} м²`,
+      '',
+      'Согласие на обработку персональных данных: предоставлено',
+      'Версия согласия: 03.08.2026',
+      'Согласие: https://degredesign.ru/consent.html',
+      'Политика: https://degredesign.ru/privacy.html',
+      `Дата и время подтверждения (UTC): ${submittedAt}`,
+      `Страница отправки: ${window.location.href}`,
     ].join('\n');
     const params = new URLSearchParams({
       view: 'cm',

@@ -2034,6 +2034,14 @@ footer,
 
 .legal__body p:last-child { margin-bottom: 0; }
 
+.legal__body h3 {
+  margin: 30px 0 12px;
+  font-family: var(--serif);
+  font-size: var(--fs-body);
+  font-weight: 400;
+  color: var(--dark);
+}
+
 .legal__body ul {
   display: grid;
   gap: 10px;
@@ -2076,6 +2084,12 @@ footer,
 
 .footer-legal a:hover {
   color: var(--accent);
+}
+
+.footer-legal__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
 }
 
 .footer-legal--dark {
