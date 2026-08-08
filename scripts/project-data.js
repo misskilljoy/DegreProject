@@ -108,7 +108,7 @@ window.PROJECT_DATA = {
     category: 'House',
     area: '—',
     rooms: '—',
-    team: 'Кожушаный Борис',
+    team: 'Евгения Лудупова · Кожушаный Борис',
     docs: 'Планировочное решение, рабочие чертежи, спецификации',
     visual: '3D renders',
     cover: 'assets/images/projects/dom-daryino/web/02.jpg',

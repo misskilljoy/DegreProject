@@ -984,7 +984,7 @@ footer,
   grid-template-columns: 1fr;
   gap: 0;
   padding:
-    60px max(var(--pad-side), env(safe-area-inset-right))
+    96px max(var(--pad-side), env(safe-area-inset-right))
     max(60px, env(safe-area-inset-bottom))
     max(var(--pad-side), env(safe-area-inset-left));
   min-height: auto;
@@ -2341,7 +2341,7 @@ footer,
   /* CONTACTS — две колонки (Figma) */
   .contacts {
     grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
-    padding: clamp(80px, 8.26vw, 119px) 40px 80px 56px;
+    padding: clamp(140px, 12.5vw, 180px) 40px 80px 56px;
     min-height: clamp(560px, 54.65vw, 787px);
   }
 
@@ -2559,7 +2559,7 @@ footer,
   .contacts {
     grid-template-columns: 1fr 1fr;
     min-height: 787px;
-    padding: 119px 68px 80px 99px;
+    padding: 180px 68px 80px 99px;
   }
 
   .contacts__right {
