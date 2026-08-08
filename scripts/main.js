@@ -4,6 +4,8 @@
 
 const pageLoader = document.querySelector('.page-loader');
 const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+const isMobileDevice = navigator.userAgentData?.mobile
+  ?? /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
 
 /* Повторно позиционируем страницу по якорю после загрузки изображений.
    Это предотвращает смещение #contacts к предыдущей секции. */
@@ -136,6 +138,7 @@ const renderProjectPage = () => {
   const planSection = document.querySelector('.project-plan');
   if (planSection && project.showPlan === false) {
     planSection.hidden = true;
+    document.querySelector('.project-subnav a[href="#plans"]')?.remove();
   }
 
   if (planDrawing && project.plan) {
@@ -489,7 +492,7 @@ if (contactForm) {
       body,
     });
     const status = contactForm.querySelector('.contact-form__status');
-    const isMobileMail = window.matchMedia('(max-width: 767px)').matches;
+    const isMobileMail = isMobileDevice;
 
     if (isMobileMail) {
       const mailParams = new URLSearchParams({
@@ -531,10 +534,13 @@ updateBackToTop();
 const quickContact = document.createElement('div');
 quickContact.className = 'quick-contact';
 const contactsHref = document.body.classList.contains('project-page') ? 'index.html#contacts' : '#contacts';
+const emailSubject = encodeURIComponent('Новый проект');
+const mobileEmailHref = `mailto:degre.design@yahoo.com?subject=${emailSubject}`;
+const desktopEmailHref = `https://mail.google.com/mail/?view=cm&fs=1&to=degre.design%40yahoo.com&su=${emailSubject}`;
 quickContact.innerHTML = `
   <div class="quick-contact__menu" id="quick-contact-menu">
     <a href="https://t.me/zhenijoy" target="_blank" rel="noopener noreferrer">Telegram</a>
-    <a href="mailto:degre.design@yahoo.com?subject=%D0%9D%D0%BE%D0%B2%D1%8B%D0%B9%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82">E-mail</a>
+    <a href="${isMobileDevice ? mobileEmailHref : desktopEmailHref}" ${isMobileDevice ? '' : 'target="_blank" rel="noopener noreferrer"'}>E-mail</a>
     <a href="${contactsHref}">Контакты</a>
   </div>
   <button class="quick-contact__toggle" type="button" aria-expanded="false" aria-controls="quick-contact-menu">

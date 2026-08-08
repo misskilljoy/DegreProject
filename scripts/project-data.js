@@ -17,6 +17,7 @@ window.PROJECT_DATA = {
     visual: '3D renders',
     cover: 'assets/images/projects/city-park/web/08.jpg',
     fallback: 'assets/images/projects/city-park/web/08.jpg',
+    plan: 'assets/images/projects/city-park/plan.png',
     gallery: selectedProjectImages('city-park', [8, 9, 1, 2, 5, 7, 10]),
   },
   vesna: {
@@ -32,6 +33,7 @@ window.PROJECT_DATA = {
     visual: '3D renders',
     cover: 'assets/images/projects/vesna/cover.jpg',
     fallback: 'assets/images/projects/vesna/cover.jpg',
+    plan: 'assets/images/projects/vesna/plan.png',
     gallery: ['assets/images/projects/vesna/cover.jpg'],
   },
   mushu: {
@@ -47,6 +49,7 @@ window.PROJECT_DATA = {
     visual: '3D renders',
     cover: 'assets/images/projects/mushu/web/01.jpg',
     fallback: 'assets/images/projects/mushu/web/01.jpg',
+    plan: 'assets/images/projects/mushu/plan.png',
     gallery: selectedProjectImages('mushu', [1, 2, 5, 6, 8, 10, 11, 13, 14, 15, 17, 18]),
   },
   smit: {
@@ -62,6 +65,7 @@ window.PROJECT_DATA = {
     visual: '3D renders',
     cover: 'assets/images/projects/smit/web/09.jpg',
     fallback: 'assets/images/projects/smit/web/09.jpg',
+    plan: 'assets/images/projects/smit/plan.png',
     gallery: selectedProjectImages('smit', [9, 7, 11, 12, 16, 17, 3, 5, 13, 19, 1]),
   },
   'novo-ochakovo': {
@@ -77,6 +81,7 @@ window.PROJECT_DATA = {
     visual: '3D renders',
     cover: 'assets/images/projects/novo-ochakovo/web/04.jpg',
     fallback: 'assets/images/projects/novo-ochakovo/web/04.jpg',
+    plan: 'assets/images/projects/novo-ochakovo/plan.png',
     gallery: selectedProjectImages('novo-ochakovo', [4, 5, 7, 8, 9, 11, 13, 14, 15, 1]),
   },
   'georg-landrin': {
@@ -92,6 +97,7 @@ window.PROJECT_DATA = {
     visual: '3D renders',
     cover: 'assets/images/projects/georg-landrin/web/05.jpg',
     fallback: 'assets/images/projects/georg-landrin/web/05.jpg',
+    plan: 'assets/images/projects/georg-landrin/plan.png',
     gallery: selectedProjectImages('georg-landrin', [5, 6, 1, 3, 4, 7]),
   },
   'dom-daryino': {
@@ -102,11 +108,12 @@ window.PROJECT_DATA = {
     category: 'House',
     area: '—',
     rooms: '—',
-    team: 'Евгения Лудупова',
+    team: 'Кожушаный Борис',
     docs: 'Планировочное решение, рабочие чертежи, спецификации',
     visual: '3D renders',
     cover: 'assets/images/projects/dom-daryino/web/02.jpg',
     fallback: 'assets/images/projects/dom-daryino/web/02.jpg',
+    showPlan: false,
     gallery: selectedProjectImages('dom-daryino', [2, 1, 4, 5, 6, 7]),
   },
   talisman: {
@@ -139,6 +146,7 @@ window.PROJECT_DATA = {
     visual: 'Фотографии реализации',
     cover: 'assets/images/projects/300-barista/web/01.jpg',
     fallback: 'assets/images/projects/300-barista/web/01.jpg',
+    plan: 'assets/images/projects/300-barista/plan.png',
     gallery: selectedProjectImages('300-barista', [1, 2, 3]),
   },
 };
