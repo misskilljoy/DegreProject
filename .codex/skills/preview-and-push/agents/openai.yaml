@@ -1,0 +1,4 @@
+interface:
+  display_name: "Preview and Push"
+  short_description: "Preview changes, approve, then push safely"
+  default_prompt: "Use $preview-and-push to implement my request, preview it locally, and push only after my approval."
