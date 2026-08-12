@@ -2576,11 +2576,12 @@ footer,
   }
 
   .contacts__logo {
-    position: absolute;
-    top: 416px;
+    position: relative;
+    top: auto;
     left: -24px;
     width: 374px;
     height: 94px;
+    margin-top: 40px;
     margin-bottom: 0;
     overflow: hidden;
   }

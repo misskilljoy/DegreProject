@@ -18,7 +18,7 @@ window.PROJECT_DATA = {
     cover: 'assets/images/projects/city-park/web/08.jpg',
     fallback: 'assets/images/projects/city-park/web/08.jpg',
     plan: 'assets/images/projects/city-park/plan.png',
-    gallery: selectedProjectImages('city-park', [8, 9, 1, 2, 5, 7, 10]),
+    gallery: selectedProjectImages('city-park', [8, 9, 1, 2, 5, 7, 10, 3, 4, 6]),
   },
   vesna: {
     title: 'ЖК Весна',
@@ -31,10 +31,10 @@ window.PROJECT_DATA = {
     team: 'Евгения Лудупова',
     docs: 'Планировочное решение, рабочие чертежи, спецификации',
     visual: '3D renders',
-    cover: 'assets/images/projects/vesna/cover.jpg',
-    fallback: 'assets/images/projects/vesna/cover.jpg',
+    cover: 'assets/images/projects/vesna/web/04.jpg',
+    fallback: 'assets/images/projects/vesna/web/04.jpg',
     plan: 'assets/images/projects/vesna/plan.png',
-    gallery: ['assets/images/projects/vesna/cover.jpg'],
+    gallery: selectedProjectImages('vesna', [4, 5, 3, 2, 6, 7, 24, 18, 16, 17, 20, 13, 9, 14, 19, 10, 15, 26, 8, 12, 11, 23, 21, 22, 25, 27]),
   },
   mushu: {
     title: 'Кафе Мушу',
@@ -50,7 +50,7 @@ window.PROJECT_DATA = {
     cover: 'assets/images/projects/mushu/web/01.jpg',
     fallback: 'assets/images/projects/mushu/web/01.jpg',
     plan: 'assets/images/projects/mushu/plan.png',
-    gallery: selectedProjectImages('mushu', [1, 2, 5, 6, 8, 10, 11, 13, 14, 15, 17, 18]),
+    gallery: selectedProjectImages('mushu', [1, 2, 5, 6, 8, 10, 11, 13, 14, 15, 17, 18, 3, 4, 7, 9, 12, 16]),
   },
   smit: {
     title: 'ЖК SMIT',
@@ -66,7 +66,7 @@ window.PROJECT_DATA = {
     cover: 'assets/images/projects/smit/web/09.jpg',
     fallback: 'assets/images/projects/smit/web/09.jpg',
     plan: 'assets/images/projects/smit/plan.png',
-    gallery: selectedProjectImages('smit', [9, 7, 11, 12, 16, 17, 3, 5, 13, 19, 1]),
+    gallery: selectedProjectImages('smit', [9, 7, 11, 12, 16, 17, 3, 5, 13, 19, 6, 8, 10, 14, 15, 18, 20, 4, 1, 2]),
   },
   'novo-ochakovo': {
     title: 'ЖК Новое Очаково',
@@ -82,7 +82,7 @@ window.PROJECT_DATA = {
     cover: 'assets/images/projects/novo-ochakovo/web/04.jpg',
     fallback: 'assets/images/projects/novo-ochakovo/web/04.jpg',
     plan: 'assets/images/projects/novo-ochakovo/plan.png',
-    gallery: selectedProjectImages('novo-ochakovo', [4, 5, 7, 8, 9, 11, 13, 14, 15, 1]),
+    gallery: selectedProjectImages('novo-ochakovo', [4, 5, 7, 8, 9, 11, 13, 14, 15, 1, 2, 3, 6, 10, 12, 16]),
   },
   'georg-landrin': {
     title: 'ЖК Георг Ландрин',
@@ -98,7 +98,7 @@ window.PROJECT_DATA = {
     cover: 'assets/images/projects/georg-landrin/web/05.jpg',
     fallback: 'assets/images/projects/georg-landrin/web/05.jpg',
     plan: 'assets/images/projects/georg-landrin/plan.png',
-    gallery: selectedProjectImages('georg-landrin', [5, 6, 1, 3, 4, 7]),
+    gallery: selectedProjectImages('georg-landrin', [5, 9, 13, 6, 8, 10, 11, 14, 7, 1, 3, 4, 12, 15, 16, 17, 18, 19, 20, 21, 23, 24, 22, 2]),
   },
   'dom-daryino': {
     title: 'Дом Дарьино',
@@ -114,7 +114,7 @@ window.PROJECT_DATA = {
     cover: 'assets/images/projects/dom-daryino/web/02.jpg',
     fallback: 'assets/images/projects/dom-daryino/web/02.jpg',
     showPlan: false,
-    gallery: selectedProjectImages('dom-daryino', [2, 1, 4, 5, 6, 7]),
+    gallery: selectedProjectImages('dom-daryino', [2, 3, 1, 4, 5, 6, 7]),
   },
   talisman: {
     title: 'ЖК Талисман',
