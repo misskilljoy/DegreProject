@@ -1,6 +1,6 @@
-﻿const selectedProjectImages = (project, numbers) =>
+﻿const selectedProjectImages = (project, numbers, revision = '') =>
   numbers.map(number =>
-    `assets/images/projects/${project}/web/${String(number).padStart(2, '0')}.jpg`
+    `assets/images/projects/${project}/web/${String(number).padStart(2, '0')}.jpg${revision ? `?v=${revision}` : ''}`
   );
 
 window.PROJECT_DATA = {
@@ -31,10 +31,11 @@ window.PROJECT_DATA = {
     team: 'Евгения Лудупова',
     docs: 'Планировочное решение, рабочие чертежи, спецификации',
     visual: '3D renders',
-    cover: 'assets/images/projects/vesna/web/04.jpg',
-    fallback: 'assets/images/projects/vesna/web/04.jpg',
+    cover: 'assets/images/projects/vesna/cover-20260813.jpg',
+    fallback: 'assets/images/projects/vesna/cover-20260813.jpg',
     plan: 'assets/images/projects/vesna/plan.png',
-    gallery: selectedProjectImages('vesna', [4, 5, 3, 2, 6, 7, 24, 18, 16, 17, 20, 13, 9, 14, 19, 10, 15, 26, 8, 12, 11, 23, 21, 22, 25, 27]),
+    gallery: [2, 4, 5, 3, 6, 7, 24, 18, 16, 17, 20, 13, 9, 14, 19, 10, 15, 26, 8, 12, 11, 23, 21, 22, 25, 27]
+      .map(number => `assets/images/projects/vesna/full/${String(number).padStart(2, '0')}.jpg`),
   },
   mushu: {
     title: 'Кафе Мушу',
