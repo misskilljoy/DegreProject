@@ -467,7 +467,7 @@ footer,
 .about__text {
   position: relative;
   z-index: 3;
-  padding: 48px var(--pad-side) 40px;
+  padding: 48px var(--pad-side) 12px;
   display: flex;
   flex-direction: column;
   overflow: visible;
@@ -539,22 +539,34 @@ footer,
 
 .about__photo-col {
   position: relative;
-  width: 100%;
-  min-height: auto;
+  width: min(100%, 520px);
+  min-height: 0;
+  aspect-ratio: 610 / 1024;
+  margin: -8px auto 0;
   isolation: isolate;
+  overflow: visible;
 }
 
 .about__paper {
-  display: none;
+  display: block;
+  position: absolute;
+  left: -13.5%;
+  top: -3.3%;
+  width: 122.5%;
+  max-width: none;
+  height: auto;
+  clip-path: none;
   pointer-events: none;
   z-index: 0;
 }
 
 .about__portrait {
-  position: static;
-  width: 100%;
+  position: absolute;
+  left: 14%;
+  top: 16.2%;
+  width: 72%;
   height: auto;
-  aspect-ratio: 439 / 560;
+  aspect-ratio: 439 / 616;
   object-fit: cover;
   object-position: top center;
   z-index: 1;
@@ -563,18 +575,25 @@ footer,
 /* Канцелярская кнопка (Figma: «screpka», 120×114 у правого верха портрета) —
    только на широких экранах вместе с бумагой */
 .about__clip {
-  display: none;
+  display: block;
   position: absolute;
+  left: 69%;
+  top: 13.3%;
+  width: 19.7%;
+  height: auto;
   z-index: 2;
   pointer-events: none;
 }
 
 .about__name {
-  position: static;
+  position: absolute;
+  left: 14%;
+  top: 77.5%;
   z-index: 2;
   display: flex;
   flex-direction: column;
-  padding: 16px var(--pad-side) 48px;
+  padding: 0;
+  max-width: 72%;
 }
 
 .about__name-main {
@@ -2203,6 +2222,9 @@ footer,
   .about__photo-col {
     width: 100%;
     min-height: clamp(480px, 71.11vw, 1024px);
+    aspect-ratio: auto;
+    margin-top: 0;
+    overflow: visible;
   }
 
   /* Композиция из Figma в пропорциях колонки 610px @1440:
@@ -2221,6 +2243,7 @@ footer,
     height: auto;
     transform: rotate(0.19deg);
     transform-origin: center;
+    clip-path: none;
   }
 
   .about__portrait {
@@ -2245,6 +2268,7 @@ footer,
     left: 11%;
     top: min(54.93vw, 791px);
     padding: 0;
+    max-width: none;
   }
 
   /* SERVICES — строка с номером, названием и ценой (Figma) */

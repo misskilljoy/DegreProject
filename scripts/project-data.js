@@ -30,12 +30,12 @@ window.PROJECT_DATA = {
     rooms: '3',
     team: 'Евгения Лудупова',
     docs: 'Планировочное решение, рабочие чертежи, спецификации',
-    visual: '3D renders',
-    cover: 'assets/images/projects/vesna/cover-20260813.jpg',
-    fallback: 'assets/images/projects/vesna/cover-20260813.jpg',
+    visual: 'Фотографии реализации',
+    cover: 'assets/images/projects/vesna/photos/01.jpg',
+    fallback: 'assets/images/projects/vesna/photos/01.jpg',
     plan: 'assets/images/projects/vesna/plan.png',
-    gallery: [2, 4, 5, 3, 6, 7, 24, 18, 16, 17, 20, 13, 9, 14, 19, 10, 15, 26, 8, 12, 11, 23, 21, 22, 25, 27]
-      .map(number => `assets/images/projects/vesna/full/${String(number).padStart(2, '0')}.jpg`),
+    gallery: [1, 24, 3, 38, 36, 4, 8, 5, 14, 21, 22, 26, 34, 6, 9, 10, 11, 12, 17, 18, 19, 20, 27, 29, 31, 32, 39, 2]
+      .map(number => `assets/images/projects/vesna/photos/${String(number).padStart(2, '0')}.jpg`),
   },
   mushu: {
     title: 'Кафе Мушу',
