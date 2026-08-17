@@ -4,10 +4,12 @@ const remoteEnabled = Boolean(config.supabaseUrl && config.anonKey && window.sup
 const client = remoteEnabled ? window.supabase.createClient(config.supabaseUrl, config.anonKey) : null;
 const localKey = 'degre-admin-projects-v1';
 const adminUsername = 'zhenijoy';
+const adminEmail = 'erzhenchik24@gmail.com';
 const localPasswordHash = '35ead48abb54165d64d166a77eb573be1a948cc1848642316906e21e99554960';
 const allowedImageTypes = new Set(['image/jpeg', 'image/png', 'image/webp']);
 const maxImageSize = 15 * 1024 * 1024;
 const loginView = document.querySelector('#login-view');
+const recoveryView = document.querySelector('#recovery-view');
 const dashboard = document.querySelector('#dashboard');
 const form = document.querySelector('#project-form');
 const projectList = document.querySelector('#project-list');
@@ -121,13 +123,30 @@ document.querySelector('#login-form').onsubmit=async event => {
     const username=String(data.get('username')).trim().toLowerCase();
     if (username !== adminUsername) throw new Error('Неверный логин или пароль.');
     if (remoteEnabled) {
-      const email=username.includes('@')?username:`${username}@degre.local`;
-      const {error}=await client.auth.signInWithPassword({email,password:data.get('password')}); if(error)throw error;
+      const {error}=await client.auth.signInWithPassword({email:adminEmail,password:data.get('password')}); if(error)throw error;
     } else if (!(isLocalHost && await hashPassword(data.get('password'))===localPasswordHash)) {
       throw new Error('Неверный логин или пароль.');
     }
     loginView.hidden=true; dashboard.hidden=false; await loadProjects();
   } catch(error) { setStatus(status,error.message,true); }
+};
+
+document.querySelector('#forgot-password').onclick=async()=>{
+  const status=document.querySelector('#login-status');
+  if(!remoteEnabled)return setStatus(status,'Восстановление пароля доступно после подключения Supabase.',true);
+  try{
+    const redirectTo=`${location.origin}${location.pathname}`;
+    const{error}=await client.auth.resetPasswordForEmail(adminEmail,{redirectTo});
+    if(error)throw error;
+    setStatus(status,'Письмо для восстановления отправлено на привязанную почту.');
+  }catch(error){setStatus(status,error.message,true)}
+};
+
+document.querySelector('#recovery-form').onsubmit=async event=>{
+  event.preventDefault();const data=new FormData(event.currentTarget);const status=document.querySelector('#recovery-status');
+  const password=String(data.get('password'));const confirmation=String(data.get('passwordConfirmation'));
+  if(password!==confirmation)return setStatus(status,'Пароли не совпадают.',true);
+  try{const{error}=await client.auth.updateUser({password});if(error)throw error;setStatus(status,'Пароль изменён. Сейчас откроется админка.');setTimeout(()=>{location.href=location.pathname},900)}catch(error){setStatus(status,error.message,true)}
 };
 
 form.onsubmit=async event => {
@@ -155,5 +174,14 @@ document.querySelector('#gallery-upload').onchange=async e=>{try{setStatus(saveS
 (async()=>{
   document.querySelector('#demo-note').hidden=remoteEnabled||!isLocalHost;
   document.querySelector('#mode-notice').textContent=remoteEnabled?'Подключено защищённое хранилище Supabase.':'Локальный деморежим: изменения сохраняются только в этом браузере.';
-  if(remoteEnabled){const{data}=await client.auth.getSession();if(data.session){loginView.hidden=true;dashboard.hidden=false;await loadProjects()}}
+  if(remoteEnabled){
+    let recovering=location.hash.includes('type=recovery');
+    client.auth.onAuthStateChange(event=>{
+      if(event==='PASSWORD_RECOVERY'){
+        recovering=true;loginView.hidden=true;dashboard.hidden=true;recoveryView.hidden=false;
+      }
+    });
+    const{data}=await client.auth.getSession();
+    if(data.session&&!recovering){loginView.hidden=true;dashboard.hidden=false;await loadProjects()}
+  }
 })();

@@ -19,9 +19,22 @@
         <label>Логин<input name="username" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" required></label>
         <label>Пароль<input name="password" type="password" autocomplete="current-password" required></label>
         <button type="submit">Войти</button>
+        <button type="button" class="text-button" id="forgot-password">Забыли пароль?</button>
         <p class="status" id="login-status" aria-live="polite"></p>
       </form>
       <p class="demo-note" id="demo-note" hidden>Локальный деморежим использует заданные владельцем логин и пароль. На опубликованном сайте пароль проверяет Supabase.</p>
+    </section>
+
+    <section class="login" id="recovery-view" hidden>
+      <p class="eyebrow">Degre Design</p>
+      <h1>Новый пароль</h1>
+      <p class="muted">Придумайте новый уникальный пароль длиной не менее 16 символов.</p>
+      <form id="recovery-form">
+        <label>Новый пароль<input name="password" type="password" minlength="16" autocomplete="new-password" required></label>
+        <label>Повторите пароль<input name="passwordConfirmation" type="password" minlength="16" autocomplete="new-password" required></label>
+        <button type="submit">Сохранить пароль</button>
+        <p class="status" id="recovery-status" aria-live="polite"></p>
+      </form>
     </section>
 
     <section class="dashboard" id="dashboard" hidden>

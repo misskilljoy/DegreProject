@@ -30,7 +30,7 @@ language sql
 stable
 set search_path = ''
 as $$
-  select coalesce((select auth.jwt() ->> 'email') = 'zhenijoy@degre.local', false)
+  select coalesce((select auth.uid()) = 'eda34486-95b6-46f6-9465-ba5404e5dace'::uuid, false)
 $$;
 revoke all on function public.is_cms_admin() from public, anon;
 grant execute on function public.is_cms_admin() to authenticated;
