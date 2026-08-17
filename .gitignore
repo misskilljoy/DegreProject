@@ -1,0 +1,5 @@
+.claude/settings.json
+.mcp.local.json
+.env
+.env.*
+!.env.example

@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#F2EDE6">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://*.supabase.co; font-src 'self'; connect-src 'self' https://*.supabase.co; object-src 'none'; base-uri 'self'; form-action 'self' mailto:; worker-src 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>Degre Design — Студия дизайна интерьера</title>
   <meta name="description" content="Degre Design — студия дизайна интерьера Евгении Лудуповой. Дизайн-проекты квартир, домов и коммерческих пространств.">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -175,7 +177,7 @@
         </div>
       </div>
       <div class="portfolio__item" data-project="vesna" data-category="apartment">
-        <img src="assets/images/projects/vesna/photos/01.jpg" alt="ЖК Весна" width="2400" height="1551" loading="lazy" decoding="async" sizes="(max-width: 900px) 100vw, 33vw">
+        <img src="assets/images/projects/vesna/web/02.jpg" alt="ЖК Весна" width="1131" height="1599" loading="lazy" decoding="async" sizes="(max-width: 900px) 100vw, 33vw">
         <div class="portfolio__caption">
           <span class="portfolio__date">11 / 2025</span>
           <span class="portfolio__project">ЖК «Весна»</span>
@@ -191,7 +193,7 @@
         </div>
       </div>
       <div class="portfolio__item" data-project="smit" data-category="apartment">
-        <img src="assets/images/projects/smit/web/09.jpg" alt="ЖК SMIT" width="475" height="665" loading="lazy" decoding="async" sizes="(max-width: 900px) 100vw, 33vw">
+        <img src="assets/images/projects/smit/web/07.jpg" alt="ЖК SMIT" width="1800" height="1319" loading="lazy" decoding="async" sizes="(max-width: 900px) 100vw, 33vw">
         <div class="portfolio__caption">
           <span class="portfolio__date">2024</span>
           <span class="portfolio__project">ЖК «SMIT»</span>
@@ -212,14 +214,14 @@
         </div>
       </div>
       <div class="portfolio__item" data-project="dom-daryino" data-category="house">
-        <img src="assets/images/projects/dom-daryino/web/02.jpg" alt="Дом Дарьино" width="475" height="665" loading="lazy" decoding="async" sizes="(max-width: 900px) 100vw, 33vw">
+        <img src="assets/images/projects/dom-daryino/web/01.jpg" alt="Дом Дарьино" width="1800" height="1080" loading="lazy" decoding="async" sizes="(max-width: 900px) 100vw, 33vw">
         <div class="portfolio__caption">
           <span class="portfolio__date">2024</span>
           <span class="portfolio__project">Дом «Дарьино»</span>
         </div>
       </div>
       <div class="portfolio__item" data-project="talisman" data-category="apartment">
-        <img src="assets/images/projects/talisman/cover.jpg" alt="ЖК Талисман" width="2500" height="1500" loading="lazy" decoding="async" sizes="(max-width: 900px) 100vw, 33vw">
+        <img src="assets/images/projects/talisman/web/04.jpg" alt="ЖК Талисман" width="1800" height="1296" loading="lazy" decoding="async" sizes="(max-width: 900px) 100vw, 33vw">
         <div class="portfolio__caption">
           <span class="portfolio__date">07 / 2025</span>
           <span class="portfolio__project">ЖК «Талисман»</span>
@@ -298,11 +300,11 @@
 
       <label class="contact-form__consent">
         <input type="checkbox" name="consent" required>
-        <span>Я даю <a href="consent.html" target="_blank">согласие на обработку персональных данных</a>.</span>
+        <span>Я даю <a href="consent.html" target="_blank" rel="noopener noreferrer">согласие на обработку персональных данных</a>.</span>
       </label>
       <label class="contact-form__consent">
         <input type="checkbox" name="privacyAcknowledgement" required>
-        <span>Я ознакомлен(а) с <a href="privacy.html" target="_blank">политикой обработки персональных данных</a>.</span>
+        <span>Я ознакомлен(а) с <a href="privacy.html" target="_blank" rel="noopener noreferrer">политикой обработки персональных данных</a>.</span>
       </label>
 
       <div class="contact-form__actions">
@@ -346,7 +348,9 @@
     </div>
   </footer>
 
-  <script src="scripts/project-data.js?v=20260814-vesna-photoshoot"></script>
-  <script src="scripts/main.js?v=20260803-email-device-fix"></script>
+  <script src="scripts/project-data.js?v=20260817-city-park-all-bathrooms"></script>
+  <script src="scripts/cms-config.js"></script>
+  <script src="scripts/cms-data.js"></script>
+  <script type="module" src="scripts/bootstrap.js"></script>
 </body>
 </html>

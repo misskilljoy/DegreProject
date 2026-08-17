@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://*.supabase.co; font-src 'self'; connect-src 'self' https://*.supabase.co; object-src 'none'; base-uri 'self'; form-action 'self'; worker-src 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="no-referrer">
+  <title>Degre Design — Управление проектами</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <main class="admin-shell">
+    <section class="login" id="login-view">
+      <p class="eyebrow">Degre Design</p>
+      <h1>Вход в админку</h1>
+      <p class="muted">Управление проектами и фотографиями.</p>
+      <form id="login-form">
+        <label>Логин<input name="username" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" required></label>
+        <label>Пароль<input name="password" type="password" autocomplete="current-password" required></label>
+        <button type="submit">Войти</button>
+        <p class="status" id="login-status" aria-live="polite"></p>
+      </form>
+      <p class="demo-note" id="demo-note" hidden>Локальный деморежим использует заданные владельцем логин и пароль. На опубликованном сайте пароль проверяет Supabase.</p>
+    </section>
+
+    <section class="dashboard" id="dashboard" hidden>
+      <header class="dashboard__header">
+        <div><p class="eyebrow">Degre Design</p><h1>Проекты</h1></div>
+        <div class="header-actions"><a href="../index.html#portfolio" target="_blank" rel="noopener noreferrer">Открыть сайт</a><button id="logout" class="secondary">Выйти</button></div>
+      </header>
+      <div class="notice"><span id="mode-notice"></span> <button type="button" id="import-projects" class="secondary">Импортировать текущие проекты</button></div>
+      <div class="workspace">
+        <aside class="project-list-panel">
+          <button id="new-project">＋ Добавить проект</button>
+          <div id="project-list" class="project-list"></div>
+        </aside>
+        <form id="project-form" class="editor" hidden>
+          <div class="editor__top">
+            <div><p class="eyebrow">Редактирование</p><h2 id="editor-title">Новый проект</h2></div>
+            <div class="editor__actions"><button type="button" id="delete-project" class="danger">Удалить</button><button type="submit">Сохранить</button></div>
+          </div>
+          <div class="fields">
+            <label>Название<input name="title" required></label>
+            <label>Адрес страницы (slug)<input name="slug" pattern="[a-z0-9-]+" placeholder="city-park" required></label>
+            <label>Категория<select name="category"><option value="Apartment">Квартира</option><option value="House">Дом</option><option value="Commercial">Коммерческое пространство</option></select></label>
+            <label>Тип проекта<input name="type" placeholder="Apartment interiors"></label>
+            <label>Дата<input name="project_date" placeholder="09.2023"></label>
+            <label>Город<input name="city" placeholder="Москва"></label>
+            <label>Площадь<input name="area" placeholder="85 м²"></label>
+            <label>Комнаты / этажи<input name="rooms" placeholder="3"></label>
+            <label>Команда<input name="team"></label>
+            <label>Визуализация<input name="visual"></label>
+            <label class="wide">Описание<textarea name="lead" rows="4"></textarea></label>
+            <label class="wide">Документация<textarea name="docs" rows="2"></textarea></label>
+            <label>Порядок проекта<input name="sort_order" type="number" min="0" value="0"></label>
+            <label class="check"><input name="published" type="checkbox" checked> Опубликован</label>
+            <label class="check"><input name="show_plan" type="checkbox" checked> Показывать планировку</label>
+          </div>
+
+          <section class="media-section">
+            <div><h3>Обложка</h3><p class="muted">Нажмите на фото в галерее и выберите «Сделать обложкой» либо загрузите отдельный файл.</p></div>
+            <div class="cover-row"><div id="cover-preview" class="cover-preview">Нет обложки</div><label class="upload">Загрузить обложку<input id="cover-upload" type="file" accept="image/jpeg,image/png,image/webp"></label></div>
+          </section>
+
+          <section class="media-section">
+            <div><h3>Планировка</h3><p class="muted">Необязательно. Можно заменить или удалить.</p></div>
+            <div class="cover-row"><div id="plan-preview" class="cover-preview cover-preview--plan">Нет планировки</div><label class="upload">Загрузить планировку<input id="plan-upload" type="file" accept="image/jpeg,image/png,image/webp"></label><button type="button" id="remove-plan" class="secondary">Убрать</button></div>
+            <label>Пояснение к планировке<textarea name="plan_note" rows="3"></textarea></label>
+          </section>
+
+          <section class="media-section">
+            <div class="gallery-heading"><div><h3>Фотографии</h3><p class="muted">Перетаскивайте карточки или используйте стрелки. Этот порядок будет на сайте.</p></div><label class="upload">Добавить фотографии<input id="gallery-upload" type="file" accept="image/jpeg,image/png,image/webp" multiple></label></div>
+            <div id="gallery-editor" class="gallery-editor"></div>
+          </section>
+          <p class="status" id="save-status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+  <script src="../vendor/supabase.min.js"></script>
+  <script src="../scripts/project-data.js"></script>
+  <script src="../scripts/cms-config.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

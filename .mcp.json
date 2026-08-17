@@ -7,13 +7,6 @@
     "playwright": {
       "command": "npx",
       "args": ["-y", "@playwright/mcp@latest"]
-    },
-    "figma": {
-      "command": "npx",
-      "args": ["-y", "figma-mcp"],
-      "env": {
-        "FIGMA_API_KEY": "figd_aTxQtuW_DNJlJsiw876lThtyTO84sP_I1YgJxwK5"
-      }
     }
   }
 }
