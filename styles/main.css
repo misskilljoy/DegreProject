@@ -2245,6 +2245,9 @@ footer,
     top: min(38vw, 547px);               /* Figma: y:616 − nav @1440 */
     width: calc(100% - clamp(88px, 16vw, 230px));
     padding: 0;
+    opacity: 0;
+    transform: translateX(-8vw);
+    animation: heroSubFlyIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) 2.72s forwards;
   }
 
   /* Figma: смещение строк 0 / 43px */
@@ -2683,6 +2686,10 @@ footer,
 
   /* PROJECT PAGE — точные отступы */
   .project-hero { padding: 34px 68px 56px; }
+  .project-hero__media {
+    min-height: 0;
+    height: clamp(500px, 60vh, 680px);
+  }
   .project-info { padding: 58px 68px 76px 99px; }
   .project-info__list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .project-plan { padding: 82px 68px 96px 99px; }
