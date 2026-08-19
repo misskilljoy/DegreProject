@@ -495,11 +495,9 @@ if (contactForm) {
     const isMobileMail = isMobileDevice;
 
     if (isMobileMail) {
-      const mailParams = new URLSearchParams({
-        subject: 'Запрос на дизайн-проект с сайта',
-        body,
-      });
-      window.location.href = `mailto:degre.design@yahoo.com?${mailParams.toString()}`;
+      const mailSubject = encodeURIComponent('Запрос на дизайн-проект с сайта');
+      const mailBody = encodeURIComponent(body);
+      window.location.href = `mailto:degre.design@yahoo.com?subject=${mailSubject}&body=${mailBody}`;
     } else {
       window.open(`https://mail.google.com/mail/?${params.toString()}`, '_blank', 'noopener,noreferrer');
     }

@@ -436,6 +436,7 @@ footer,
 
 .hero__sub-line1 { padding-left: 0; }
 .hero__sub-line2 { padding-left: 0; }
+.hero__sub-mobile-break { display: none; }
 
 /* Фото на мобильном — в родных пропорциях (710×922), без обрезки */
 .hero__img-wrap {
@@ -450,6 +451,61 @@ footer,
   height: 100%;
   object-fit: cover;
   object-position: center;
+}
+
+@media (max-width: 767px) {
+  .hero__body {
+    display: grid;
+    grid-template-rows: auto auto;
+  }
+
+  .hero__content {
+    grid-row: 1;
+  }
+
+  .hero__img-wrap,
+  .hero__sub {
+    grid-row: 2;
+    grid-column: 1;
+  }
+
+  .hero__sub {
+    align-self: start;
+    justify-self: center;
+    z-index: 2;
+    display: block;
+    width: 86vw;
+    max-width: 460px;
+    margin-top: 46.6%;
+    margin-left: 0;
+    padding: 0;
+    text-align: center;
+    text-shadow: 0 1px 8px rgba(242, 237, 230, 0.95), 0 0 2px rgba(242, 237, 230, 0.95);
+    opacity: 0;
+    transform: translateX(-110%);
+    animation: heroSubFlyIn 0.82s cubic-bezier(0.22, 1, 0.36, 1) 2.72s forwards;
+  }
+
+  .hero__sub-line1,
+  .hero__sub-line2 {
+    display: block;
+    min-width: 0;
+    max-width: 100%;
+    white-space: normal;
+  }
+
+  .hero__sub-mobile-break { display: initial; }
+}
+
+@keyframes heroSubFlyIn {
+  from {
+    opacity: 0;
+    transform: translateX(-110%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 /* ══════════════════════════════════════
