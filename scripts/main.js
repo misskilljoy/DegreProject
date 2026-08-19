@@ -155,10 +155,11 @@ const renderProjectPage = () => {
     setText('.project-plan__notes p', project.planNote);
   }
 
+  const gallerySources = [...new Set((project.gallery || []).filter(Boolean))];
   const gallery = document.querySelector('.project-gallery');
   if (gallery) {
     const galleryItems = document.createDocumentFragment();
-    project.gallery.forEach((src, index) => {
+    gallerySources.forEach((src, index) => {
       const img = document.createElement('img');
       img.src = src;
       img.alt = `${project.title} — рендер ${index + 1}`;
@@ -166,9 +167,9 @@ const renderProjectPage = () => {
       img.decoding = 'async';
       img.sizes = '(max-width: 900px) 100vw, 50vw';
       img.onerror = () => {
-        if (project.fallback && img.src.indexOf(project.fallback) === -1) {
-          img.src = project.fallback;
-        }
+        img.dataset.loadFailed = 'true';
+        img.remove();
+        layoutProjectGallery();
       };
       galleryItems.appendChild(img);
     });
@@ -180,8 +181,9 @@ const renderProjectPage = () => {
     const layoutProjectGallery = () => {
       cancelAnimationFrame(galleryLayoutFrame);
       galleryLayoutFrame = requestAnimationFrame(() => {
-        gallery.replaceChildren(...galleryImages);
-        galleryImages.forEach((img) => {
+        const loadedImages = galleryImages.filter(img => img.dataset.loadFailed !== 'true');
+        gallery.replaceChildren(...loadedImages);
+        loadedImages.forEach((img) => {
           img.style.width = '';
           img.style.height = '';
         });
@@ -197,7 +199,7 @@ const renderProjectPage = () => {
         let currentRow = [];
         let ratioSum = 0;
 
-        galleryImages.forEach((img) => {
+        loadedImages.forEach((img) => {
           const ratio = img.naturalWidth && img.naturalHeight
             ? img.naturalWidth / img.naturalHeight
             : 1.5;
@@ -244,7 +246,7 @@ const renderProjectPage = () => {
     window.addEventListener('resize', layoutProjectGallery);
   }
 
-  const lightboxSources = [project.cover, ...project.gallery]
+  const lightboxSources = [project.cover, ...gallerySources]
     .filter((src, index, sources) => src && sources.indexOf(src) === index);
   const lightboxTriggers = [heroImg, ...document.querySelectorAll('.project-gallery img')].filter(Boolean);
 
