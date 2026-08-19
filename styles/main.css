@@ -471,19 +471,19 @@ footer,
 
   .hero__sub {
     align-self: start;
-    justify-self: center;
+    justify-self: start;
     z-index: 2;
     display: block;
-    width: 86vw;
+    width: calc(100% - 24px);
     max-width: 460px;
-    margin-top: 46.6%;
-    margin-left: 0;
+    margin-top: 45%;
+    margin-left: 12px;
     padding: 0;
-    text-align: center;
+    text-align: left;
     text-shadow: 0 1px 8px rgba(242, 237, 230, 0.95), 0 0 2px rgba(242, 237, 230, 0.95);
     opacity: 0;
     transform: translateX(-110%);
-    animation: heroSubFlyIn 0.82s cubic-bezier(0.22, 1, 0.36, 1) 2.72s forwards;
+    animation: heroSubFlyIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) 2.72s forwards;
   }
 
   .hero__sub-line1,
